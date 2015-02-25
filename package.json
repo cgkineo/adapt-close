@@ -1,0 +1,17 @@
+{
+  "name": "adapt-close",
+  "version": "0.0.1",
+  "description": "An extension to add a close button and/or prompts.",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cgkineo/adapt-close.git"
+  },
+  "author": "Tom Greenfield",
+  "license": "GPL v3",
+  "bugs": {
+    "url": "https://github.com/cgkineo/adapt-close/issues"
+  },
+  "devDependencies": {}
+}
