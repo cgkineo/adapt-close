@@ -13,7 +13,7 @@ An extension to add a close button and/or prompts.
 "_close": {
 	"_isEnabled": true,
 	"_iconTypeClass": "icon-cross",
-	"tooltip": "Close",
+	"_tooltip": "Close",
 	"_showTooltip": true,
 	"_layout": "right",
 	"_promptIfIncomplete": null,
