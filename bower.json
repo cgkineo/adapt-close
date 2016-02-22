@@ -1,15 +1,17 @@
 {
-  "name": "adapt-close",
-  "version": "0.0.1",
-  "homepage": "https://github.com/cgkineo/adapt-close",
-  "authors": [
-    "Tom Greenfield"
-  ],
-  "description": "An extension to add a close button and/or prompts.",
-  "main": "/js/adapt-close.js",
-  "keywords": [
-    "adapt-plugin",
-    "adapt-extension"
-  ],
-  "license": "GPLv3"
+    "name": "adapt-close",
+    "repository": "git://github.com/cgkineo/adapt-close",
+    "framework": "^2.0.0",
+    "version": "2.0.0",
+    "homepage": "https://github.com/cgkineo/adapt-close",
+    "issues": "https://github.com/cgkineo/adapt-close/issues/",
+    "displayName": "Close",
+    "extension": "close",
+    "description": "An extension to add a close button and/or prompts",
+    "main": "/js/adapt-close.js",
+    "keywords": [
+        "adapt-plugin",
+        "adapt-extension"
+    ],
+    "license": "GPLv3"
 }
