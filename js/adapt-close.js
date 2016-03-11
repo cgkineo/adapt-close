@@ -1,86 +1,70 @@
-/*
-* Close
-* License - https://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
-* Maintainers - Tom Greenfield
-*/
-
-define(function(require) {
-
-	var Adapt = require("coreJS/adapt");
-	var Backbone = require("backbone");
+define([ "coreJS/adapt" ], function(Adapt) {
 
 	var CloseView = Backbone.View.extend({
 
 		initialize: function() {
-			this.listenTo(Adapt, "remove", this.remove);
-			this.listenTo(Adapt, "navigation:close", this.onCloseButton);
-			this.listenTo(Adapt, "confirmClose", this.close);
-			this.render();
+			this.listenTo(Adapt, {
+				"navigation:closeButton": this.onCloseButton,
+				"close:confirm": this.onCloseConfirm
+			}).render();
 		},
 
 		render: function() {
-			var template = Handlebars.templates.close;
 			var data = this.model.toJSON();
+			var template = Handlebars.templates.close;
 
-			this.$el = $(template(data));
-			$(".navigation-inner").prepend(this.$el);
-
-			return this;
+			data._globals = Adapt.course.get("_globals");
+			this.$el.html(template(data)).prependTo($(".navigation-inner"));
 		},
 
 		onCloseButton: function() {
 			var prompt = !Adapt.course.get("_isComplete") ?
-				this.model.get("_promptIfIncomplete") :
-				this.model.get("_promptIfComplete");
+				this.model.get("_notifyPromptIfIncomplete") :
+				this.model.get("_notifyPromptIfComplete");
 
-			if (prompt) {
-				Adapt.trigger("notify:prompt", {
-					title: prompt.title,
-					body: prompt.body,
-					_prompts: [
-						{
-							promptText: prompt.okButton,
-							_callbackEvent: "confirmClose"
-						},
-						{
-							promptText: prompt.cancelButton
-						}
-					]
-				});
-			} else {
-				Adapt.trigger("confirmClose");
-			}
+			if (!prompt || !prompt._isEnabled) return Adapt.trigger("close:confirm");
+
+			Adapt.trigger("notify:prompt", {
+				title: prompt.title,
+				body: prompt.body,
+				_prompts: [
+					{
+						promptText: prompt.confirm,
+						_callbackEvent: "close:confirm"
+					},
+					{
+						promptText: prompt.cancel
+					}
+				]
+			});
 		},
 
-		close: function() {
+		onCloseConfirm: function() {
 			top.window.close();
 		}
 
 	});
 
-	function onCloseWindow() {
-		if (!Adapt.course.get("_isComplete")) {
-			return Adapt.course.get("_close").promptIfIncomplete || undefined;
-		} else {
-			return Adapt.course.get("_close").promptIfComplete || undefined;
-		}
+	function onBeforeUnload(config) {
+		return !Adapt.course.get("_isComplete") ?
+			config.browserPromptIfIncomplete || undefined :
+			config.browserPromptIfComplete || undefined;
 	}
 
-	Adapt.on("app:dataReady", function() {
-		var prompts = Adapt.course.get("_close") &&
-			(Adapt.course.get("_close").promptIfIncomplete || 
-			Adapt.course.get("_close").promptIfComplete);
+	Adapt.once("adapt:initialize", function() {
+		var config = Adapt.course.get("_close");
 
-		if (prompts) $(window).on("beforeunload.close", onCloseWindow);
-	});
+		if (!config) return;
 
-	Adapt.on("router:menu router:page", function() {
-		var button = Adapt.course.get("_navigation") &&
-			Adapt.course.get("_navigation")._extensions &&
-			Adapt.course.get("_navigation")._extensions._close;
-		
-		button = button ? Adapt.course.get("_navigation")._extensions._close : "";
-		if (button._isEnabled) new CloseView({ model: new Backbone.Model(button) });
+		var button = config._button;
+
+		if (button && button._isEnabled) {
+			new CloseView({ model: new Backbone.Model(button) });
+		}
+
+		if (config.browserPromptIfIncomplete || config.browserPromptIfComplete) {
+			$(window).on("beforeunload", _.partial(onBeforeUnload, config));
+		}
 	});
 
 });
