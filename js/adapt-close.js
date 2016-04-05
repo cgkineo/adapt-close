@@ -14,7 +14,7 @@ define([ "coreJS/adapt" ], function(Adapt) {
 			var template = Handlebars.templates.close;
 
 			data._globals = Adapt.course.get("_globals");
-			this.$el.html(template(data)).prependTo($(".navigation-inner"));
+			this.setElement(template(data)).$el.prependTo($(".navigation-inner"));
 		},
 
 		onCloseButton: function() {
