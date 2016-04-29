@@ -6,6 +6,7 @@
     "closeButton": {
       "type": "string",
       "default": "Select here to close the window.",
+      "title": "Close button",
       "inputType": "Text"
     }
   },
@@ -20,12 +21,92 @@
               "type": "object",
               "legend": "Close",
               "properties": {
-                "browserPromptIfComplete": {
-                  "type": "string",
-                  "default": "",
-                  "title": "Browser prompt if complete",
-                  "inputType": "Text",
-                  "help": "Enter text to display a browser dialog if the window is closed after the course has been completed"
+                "_button": {
+                  "type": "object",
+                  "title": "Button",
+                  "properties": {
+                    "_isEnabled": {
+                      "type": "boolean",
+                      "default": true,
+                      "title": "Is enabled",
+                      "inputType": "Checkbox",
+                      "help": "Add a close button to the navigation bar"
+                    },
+                    "_notifyPromptIfIncomplete": {
+                      "type": "object",
+                      "title": "Notify prompt if incomplete",
+                      "properties": {
+                        "_isEnabled": {
+                          "type": "boolean",
+                          "default": false,
+                          "title": "Is enabled",
+                          "inputType": "Checkbox",
+                          "help": "Display a notify prompt if the close button is selected while the course is incomplete"
+                        },
+                        "title": {
+                          "type": "string",
+                          "default": "Confirm close",
+                          "inputType": "Text",
+                          "help": "Enter the prompt title"
+                        },
+                        "body": {
+                          "type": "string",
+                          "default": "Are you sure you want to close the window?",
+                          "inputType": "Text",
+                          "help": "Enter the prompt message"
+                        },
+                        "confirm": {
+                          "type": "string",
+                          "default": "Close window",
+                          "inputType": "Text",
+                          "help": "Enter the confirm button text"
+                        },
+                        "cancel": {
+                          "type": "string",
+                          "default": "Cancel",
+                          "inputType": "Text",
+                          "help": "Enter the cancel button text"
+                        }
+                      }
+                    },
+                    "_notifyPromptIfComplete": {
+                      "type": "object",
+                      "title": "Notify prompt if complete",
+                      "properties": {
+                        "_isEnabled": {
+                          "type": "boolean",
+                          "default": false,
+                          "title": "Is enabled",
+                          "inputType": "Checkbox",
+                          "help": "Display a notify prompt if the close button is selected after the course has been completed"
+                        },
+                        "title": {
+                          "type": "string",
+                          "default": "Confirm close",
+                          "inputType": "Text",
+                          "help": "Enter the prompt title"
+                        },
+                        "body": {
+                          "type": "string",
+                          "default": "Are you sure you want to close the window?",
+                          "inputType": "Text",
+                          "help": "Enter the prompt message"
+                        },
+                        "confirm": {
+                          "type": "string",
+                          "default": "Close window",
+                          "inputType": "Text",
+                          "help": "Enter the confirm button text"
+                        },
+                        "cancel": {
+                          "type": "string",
+                          "default": "Cancel",
+                          "inputType": "Text",
+                          "help": "Enter the cancel button text"
+                        }
+                      }
+                    }
+                  }
                 },
                 "browserPromptIfIncomplete": {
                   "type": "string",
@@ -34,92 +115,12 @@
                   "inputType": "Text",
                   "help": "Enter text to display a browser dialog if the window is closed while the course is incomplete"
                 },
-                "_button": {
-                  "type": "object",
-                  "title": "Button",
-                  "properties": {
-                    "_notifyPromptIfComplete": {
-                      "type": "object",
-                      "title": "Notify prompt if complete",
-                      "properties": {
-                        "cancel": {
-                          "type": "string",
-                          "default": "Cancel",
-                          "inputType": "Text",
-                          "help": "Enter the cancel button text"
-                        },
-                        "confirm": {
-                          "type": "string",
-                          "default": "Close window",
-                          "inputType": "Text",
-                          "help": "Enter the confirm button text"
-                        },
-                        "body": {
-                          "type": "string",
-                          "default": "Are you sure you want to close the window?",
-                          "inputType": "Text",
-                          "help": "Enter the prompt message"
-                        },
-                        "title": {
-                          "type": "string",
-                          "default": "Confirm close",
-                          "inputType": "Text",
-                          "help": "Enter the prompt title"
-                        },
-                        "_isEnabled": {
-                          "type": "boolean",
-                          "default": false,
-                          "title": "Is enabled",
-                          "inputType": "Checkbox",
-                          "help": "Display a notify prompt if the close button is selected after the course has been completed"
-                        }
-                      }
-                    },
-                    "_notifyPromptIfIncomplete": {
-                      "type": "object",
-                      "title": "Notify prompt if incomplete",
-                      "properties": {
-                        "cancel": {
-                          "type": "string",
-                          "default": "Cancel",
-                          "inputType": "Text",
-                          "help": "Enter the cancel button text"
-                        },
-                        "confirm": {
-                          "type": "string",
-                          "default": "Close window",
-                          "inputType": "Text",
-                          "help": "Enter the confirm button text"
-                        },
-                        "body": {
-                          "type": "string",
-                          "default": "Are you sure you want to close the window?",
-                          "inputType": "Text",
-                          "help": "Enter the prompt message"
-                        },
-                        "title": {
-                          "type": "string",
-                          "default": "Confirm close",
-                          "inputType": "Text",
-                          "help": "Enter the prompt title"
-                        },
-                        "_isEnabled": {
-                          "type": "boolean",
-                          "default": false,
-                          "title": "Is enabled",
-                          "inputType": "Checkbox",
-                          "help": "Display a notify prompt if the close button is selected while the course is incomplete"
-                        }
-                      }
-                    },
-                    "_isEnabled": {
-                      "type": "boolean",
-                      "default": true,
-                      "title": "Is enabled",
-                      "inputType": "Checkbox",
-                      "help": "Add a close button to the navigation bar"
-                    }
-                  }
+                "browserPromptIfComplete": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Browser prompt if complete",
+                  "inputType": "Text",
+                  "help": "Enter text to display a browser dialog if the window is closed after the course has been completed"
                 }
               }
             }
