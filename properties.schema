@@ -7,7 +7,8 @@
       "type": "string",
       "default": "Select here to close the window.",
       "title": "Close button",
-      "inputType": "Text"
+      "inputType": "Text",
+      "translatable": true
     }
   },
   "properties": {
@@ -47,25 +48,29 @@
                           "type": "string",
                           "default": "Confirm close",
                           "inputType": "Text",
-                          "help": "Enter the prompt title"
+                          "help": "Enter the prompt title",
+                          "translatable": true
                         },
                         "body": {
                           "type": "string",
                           "default": "Are you sure you want to close the window?",
-                          "inputType": "Text",
-                          "help": "Enter the prompt message"
+                          "inputType": "TextArea",
+                          "help": "Enter the prompt message",
+                          "translatable": true
                         },
                         "confirm": {
                           "type": "string",
                           "default": "Close window",
                           "inputType": "Text",
-                          "help": "Enter the confirm button text"
+                          "help": "Enter the confirm button text",
+                          "translatable": true
                         },
                         "cancel": {
                           "type": "string",
                           "default": "Cancel",
                           "inputType": "Text",
-                          "help": "Enter the cancel button text"
+                          "help": "Enter the cancel button text",
+                          "translatable": true
                         }
                       }
                     },
@@ -84,25 +89,29 @@
                           "type": "string",
                           "default": "Confirm close",
                           "inputType": "Text",
-                          "help": "Enter the prompt title"
+                          "help": "Enter the prompt title",
+                          "translatable": true
                         },
                         "body": {
                           "type": "string",
                           "default": "Are you sure you want to close the window?",
-                          "inputType": "Text",
-                          "help": "Enter the prompt message"
+                          "inputType": "TextArea",
+                          "help": "Enter the prompt message",
+                          "translatable": true
                         },
                         "confirm": {
                           "type": "string",
                           "default": "Close window",
                           "inputType": "Text",
-                          "help": "Enter the confirm button text"
+                          "help": "Enter the confirm button text",
+                          "translatable": true
                         },
                         "cancel": {
                           "type": "string",
                           "default": "Cancel",
                           "inputType": "Text",
-                          "help": "Enter the cancel button text"
+                          "help": "Enter the cancel button text",
+                          "translatable": true
                         }
                       }
                     }
@@ -113,14 +122,16 @@
                   "default": "",
                   "title": "Browser prompt if incomplete",
                   "inputType": "Text",
-                  "help": "Enter text to display a browser dialog if the window is closed while the course is incomplete"
+                  "help": "Enter text to display a browser dialog if the window is closed while the course is incomplete",
+                  "translatable": true
                 },
                 "browserPromptIfComplete": {
                   "type": "string",
                   "default": "",
                   "title": "Browser prompt if complete",
                   "inputType": "Text",
-                  "help": "Enter text to display a browser dialog if the window is closed after the course has been completed"
+                  "help": "Enter text to display a browser dialog if the window is closed after the course has been completed",
+                  "translatable": true
                 }
               }
             }
