@@ -1,6 +1,6 @@
 {
 	"name": "adapt-close",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"framework": "^2.0.4",
 	"displayName": "Close",
 	"extension": "close",
