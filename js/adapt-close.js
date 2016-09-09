@@ -40,6 +40,10 @@ define([ "coreJS/adapt" ], function(Adapt) {
 		},
 
 		onCloseConfirm: function() {
+			//ensure that the browser prompt doesn't get triggered as well
+			var config = Adapt.course.get("_close");
+			config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
+
 			top.window.close();
 		}
 
