@@ -24,6 +24,12 @@ An extension to add a close button and/or prompts.
 		<th>Default</th>
 	</tr>
 	<tr>
+		<td colspan="3"><code>_isEnabled</code></td>
+		<td>Boolean</td>
+		<td>Set to <code>false</code> to completely disable the extension</td>
+		<td><code>false</code></td>
+	</tr>
+	<tr>
 		<td rowspan="11"><code>_button</code></td>
 		<td colspan="2"><code>_isEnabled</code></td>
 		<td>Boolean</td>

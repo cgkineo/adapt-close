@@ -22,6 +22,15 @@
               "type": "object",
               "legend": "Close",
               "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required":true,
+                  "default": true,
+                  "title": "Enabled?",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "Set to 'false' to completely disable this extension"
+                },
                 "_button": {
                   "type": "object",
                   "title": "Button",
@@ -29,9 +38,9 @@
                     "_isEnabled": {
                       "type": "boolean",
                       "default": true,
-                      "title": "Is enabled",
+                      "title": "Enabled?",
                       "inputType": "Checkbox",
-                      "help": "Add a close button to the navigation bar"
+                      "help": "Set to 'true' to add a close button to the navigation bar"
                     },
                     "_notifyPromptIfIncomplete": {
                       "type": "object",
@@ -40,9 +49,9 @@
                         "_isEnabled": {
                           "type": "boolean",
                           "default": false,
-                          "title": "Is enabled",
+                          "title": "Enabled?",
                           "inputType": "Checkbox",
-                          "help": "Display a notify prompt if the close button is selected while the course is incomplete"
+                          "help": "Set to true to display a notify prompt if the close button is selected while the course is incomplete"
                         },
                         "title": {
                           "type": "string",
@@ -81,9 +90,9 @@
                         "_isEnabled": {
                           "type": "boolean",
                           "default": false,
-                          "title": "Is enabled",
+                          "title": "Enabled?",
                           "inputType": "Checkbox",
-                          "help": "Display a notify prompt if the close button is selected after the course has been completed"
+                          "help": "Set to 'true' to display a notify prompt if the close button is selected after the course has been completed"
                         },
                         "title": {
                           "type": "string",

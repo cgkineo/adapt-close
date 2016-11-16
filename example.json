@@ -1,4 +1,5 @@
 "_close": {
+	"_isEnabled": true,
 	"_button": {
 		"_isEnabled": true,
 		"_notifyPromptIfIncomplete": {
