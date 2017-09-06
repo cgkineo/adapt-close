@@ -1,7 +1,7 @@
 {
 	"name": "adapt-close",
 	"version": "1.0.5",
-	"framework": "^2.0.4",
+	"framework": ">=2.0.4",
 	"displayName": "Close",
 	"extension": "close",
 	"targetAttribute": "_close",
