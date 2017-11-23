@@ -27,9 +27,8 @@
                   "required":true,
                   "default": true,
                   "title": "Enabled?",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
-                  "validators": [],
-                  "help": "Set to 'false' to completely disable this extension"
+                  "inputType": "Checkbox",
+                  "validators": []
                 },
                 "_button": {
                   "type": "object",
