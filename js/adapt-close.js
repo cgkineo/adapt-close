@@ -58,8 +58,6 @@ define([ "core/js/adapt" ], function(Adapt) {
 	}
 
 	function initialise() {
-		Adapt.off('router:menu router:page', initialise);
-
 		var config = Adapt.course.get("_close");
 
 		if (!config || !config._isEnabled) return;
@@ -81,7 +79,7 @@ define([ "core/js/adapt" ], function(Adapt) {
 		Adapt.on('app:languageChanged', function () {
 			$(window).off('beforeunload.close');
 			// have to wait until the navbar is ready
-			Adapt.on('router:menu router:page', initialise);
+			Adapt.once('router:location', initialise);
 		});
 	});
 });
