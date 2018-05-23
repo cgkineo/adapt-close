@@ -46,7 +46,15 @@ define([ "core/js/adapt" ], function(Adapt) {
 			var config = Adapt.course.get("_close");
 			config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
-			top.window.close();
+			// if course placed deeper than 1 iframe we can't close window directly,
+			// therefore just trigger unload window events
+			if(top.window.frames.length > 1) {
+				$(window)
+					 .trigger('unload')
+					.trigger('beforeunload');
+			} else {
+				top.window.close();
+			}
 		}
 
 	});
