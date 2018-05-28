@@ -34,6 +34,13 @@
                   "type": "object",
                   "title": "Button",
                   "properties": {
+                    "_isLMS": {
+                      "type": "boolean",
+                      "default": false,
+                      "title": "Is LMS?",
+                      "inputType": "Checkbox",
+                      "help": "Set to 'true' to add LMS support. Plugin calls LMSFinish() function for closing course"
+                    },
                     "_isEnabled": {
                       "type": "boolean",
                       "default": true,
