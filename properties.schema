@@ -39,7 +39,7 @@
                       "default": false,
                       "title": "Is LMS?",
                       "inputType": "Checkbox",
-                      "help": "Set to 'true' to add LMS support. Plugin calls LMSFinish() function for closing course"
+                      "help": "Set to 'true' to add LMS support. Plugin calls LMSFinish() function for closing course instead of window.close()"
                     },
                     "_isEnabled": {
                       "type": "boolean",
