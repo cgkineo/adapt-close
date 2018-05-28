@@ -46,7 +46,7 @@ define([ "core/js/adapt" ], function(Adapt) {
 			var config = Adapt.course.get("_close");
 			config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
-			if(config._button._isLMS) {
+			if(config._button._closeViaLMSFinish) {
 				$(window)
 					.trigger('unload')
 					.trigger('beforeunload');

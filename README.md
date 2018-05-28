@@ -37,7 +37,7 @@ An extension to add a close button and/or prompts.
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td colspan="2"><code>_isLMS</code></td>
+		<td colspan="2"><code>_closeViaLMSFinish</code></td>
 		<td>Boolean</td>
 		<td>Set to <code>true</code> to add LMS support. Plugin calls <code>LMSFinish()</code> function for closing course instead of <code>window.close()</code></td>
 		<td><code>false</code></td>
