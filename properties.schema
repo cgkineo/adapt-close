@@ -34,6 +34,13 @@
                   "type": "object",
                   "title": "Button",
                   "properties": {
+                    "_closeViaLMSFinish": {
+                      "type": "boolean",
+                      "default": false,
+                      "title": "Close via LMSFinish?",
+                      "inputType": "Checkbox",
+                      "help": "Set to 'true' to add LMS support. Plugin calls LMSFinish() function for closing course instead of window.close()"
+                    },
                     "_isEnabled": {
                       "type": "boolean",
                       "default": true,

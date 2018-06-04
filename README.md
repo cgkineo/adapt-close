@@ -30,10 +30,16 @@ An extension to add a close button and/or prompts.
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td rowspan="11"><code>_button</code></td>
+		<td rowspan="12"><code>_button</code></td>
 		<td colspan="2"><code>_isEnabled</code></td>
 		<td>Boolean</td>
 		<td>Adds a close button to the navigation bar</td>
+		<td><code>false</code></td>
+	</tr>
+	<tr>
+		<td colspan="2"><code>_closeViaLMSFinish</code></td>
+		<td>Boolean</td>
+		<td>Set to <code>true</code> to add LMS support. Plugin calls <code>LMSFinish()</code> function for closing course instead of <code>window.close()</code></td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>

@@ -46,7 +46,12 @@ define([ "core/js/adapt" ], function(Adapt) {
 			var config = Adapt.course.get("_close");
 			config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
-			top.window.close();
+			if (config._button._closeViaLMSFinish) {
+                var scorm = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
+                if (scorm) scorm.getInstance().finish();
+			} else {
+				top.window.close();
+			}
 		}
 
 	});
