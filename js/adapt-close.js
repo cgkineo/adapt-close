@@ -1,38 +1,38 @@
-define([ "core/js/adapt" ], function(Adapt) {
+define([ 'core/js/adapt' ], function(Adapt) {
 
     var CloseView = Backbone.View.extend({
 
         initialize: function() {
             this.listenTo(Adapt, {
-                "navigation:closeButton": this.onCloseButton,
-                "close:confirm": this.onCloseConfirm,
-                "app:languageChanged": this.remove
+                'navigation:closeButton': this.onCloseButton,
+                'close:confirm': this.onCloseConfirm,
+                'app:languageChanged': this.remove
             }).render();
         },
 
         render: function() {
             var data = this.model.toJSON();
-            data._globals = Adapt.course.get("_globals");
+            data._globals = Adapt.course.get('_globals');
 
             var template = Handlebars.templates.close;
 
-            this.setElement(template(data)).$el.prependTo($(".navigation-inner"));
+            this.setElement(template(data)).$el.prependTo($('.navigation-inner'));
         },
 
         onCloseButton: function() {
-            var prompt = !Adapt.course.get("_isComplete") ?
-                this.model.get("_notifyPromptIfIncomplete") :
-                this.model.get("_notifyPromptIfComplete");
+            var prompt = !Adapt.course.get('_isComplete') ?
+                this.model.get('_notifyPromptIfIncomplete') :
+                this.model.get('_notifyPromptIfComplete');
 
-            if (!prompt || !prompt._isEnabled) return Adapt.trigger("close:confirm");
+            if (!prompt || !prompt._isEnabled) return Adapt.trigger('close:confirm');
 
-            Adapt.trigger("notify:prompt", {
+            Adapt.trigger('notify:prompt', {
                 title: prompt.title,
                 body: prompt.body,
                 _prompts: [
                     {
                         promptText: prompt.confirm,
-                        _callbackEvent: "close:confirm"
+                        _callbackEvent: 'close:confirm'
                     },
                     {
                         promptText: prompt.cancel
@@ -43,7 +43,7 @@ define([ "core/js/adapt" ], function(Adapt) {
 
         onCloseConfirm: function() {
             //ensure that the browser prompt doesn't get triggered as well
-            var config = Adapt.course.get("_close");
+            var config = Adapt.course.get('_close');
             config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
             if (config._button._closeViaLMSFinish) {
@@ -57,13 +57,13 @@ define([ "core/js/adapt" ], function(Adapt) {
     });
 
     function onBeforeUnload(config) {
-        return !Adapt.course.get("_isComplete") ?
+        return !Adapt.course.get('_isComplete') ?
             config.browserPromptIfIncomplete || undefined :
             config.browserPromptIfComplete || undefined;
     }
 
     function initialise() {
-        var config = Adapt.course.get("_close");
+        var config = Adapt.course.get('_close');
 
         if (!config || !config._isEnabled) return;
 
@@ -78,7 +78,7 @@ define([ "core/js/adapt" ], function(Adapt) {
         }
     }
 
-    Adapt.once("adapt:start", function() {
+    Adapt.once('adapt:start', function() {
         initialise();
 
         Adapt.on('app:languageChanged', function () {
