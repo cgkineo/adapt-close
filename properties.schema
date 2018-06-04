@@ -39,7 +39,7 @@
                       "default": false,
                       "title": "Close via LMSFinish?",
                       "inputType": "Checkbox",
-                      "help": "Set to 'true' to add LMS support. Plugin calls LMSFinish() function for closing course instead of window.close()"
+                      "help": "Enables closing the course via the SCORM 'finish' function rather than by closing the window - useful for LMSes that don't open the course in a new window or don't allow the course window to be closed via JavaScript."
                     },
                     "_isEnabled": {
                       "type": "boolean",
