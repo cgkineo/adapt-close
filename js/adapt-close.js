@@ -74,6 +74,7 @@ define([ 'core/js/adapt' ], function(Adapt) {
         }
 
         if (config.browserPromptIfIncomplete || config.browserPromptIfComplete) {
+            $(window).off('beforeunload');// stop spoor from handling beforeunload - if it handles the event first, LMSFinish will get called regardless of what the user selects in the prompt
             $(window).on('beforeunload.close', _.partial(onBeforeUnload, config));
         }
     }
