@@ -1,6 +1,7 @@
-"_close": {
-    "_isEnabled": true,
-    "_button": {
+    // To go in the course.json file
+    "_close": {
+        "_isEnabled": true,
+        "_button": {
         "_isEnabled": true,
         "_closeViaLMSFinish": false,
         "_notifyPromptIfIncomplete": {
@@ -17,7 +18,7 @@
             "confirm": "Close window",
             "cancel": "Cancel"
         }
-    },
-    "browserPromptIfIncomplete": "",
-    "browserPromptIfComplete": ""
-}
+        },
+        "browserPromptIfIncomplete": "",
+        "browserPromptIfComplete": ""
+    }
