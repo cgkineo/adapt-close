@@ -12,5 +12,6 @@
     "adapt-extension"
   ],
   "license": "GPL-3.0",
-  "homepage": "https://github.com/cgkineo/adapt-close"
+  "homepage": "https://github.com/cgkineo/adapt-close",
+  "targetAttribute": "_close"
 }

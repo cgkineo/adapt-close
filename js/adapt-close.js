@@ -16,7 +16,7 @@ define([ 'core/js/adapt' ], function(Adapt) {
 
       var template = Handlebars.templates.close;
 
-      this.setElement(template(data)).$el.prependTo($('.navigation-inner'));
+      this.setElement(template(data)).$el.prependTo($('.nav__inner'));
     },
 
     onCloseButton: function() {
