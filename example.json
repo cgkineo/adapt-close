@@ -2,22 +2,22 @@
     "_close": {
         "_isEnabled": true,
         "_button": {
-        "_isEnabled": true,
-        "_closeViaLMSFinish": false,
-        "_notifyPromptIfIncomplete": {
-            "_isEnabled": false,
-            "title": "Confirm close",
-            "body": "Are you sure you want to close the window?",
-            "confirm": "Close window",
-            "cancel": "Cancel"
-        },
-        "_notifyPromptIfComplete": {
-            "_isEnabled": false,
-            "title": "Confirm close",
-            "body": "Are you sure you want to close the window?",
-            "confirm": "Close window",
-            "cancel": "Cancel"
-        }
+            "_isEnabled": true,
+            "_closeViaLMSFinish": false,
+            "_notifyPromptIfIncomplete": {
+                "_isEnabled": false,
+                "title": "Confirm close",
+                "body": "Are you sure you want to close the window?",
+                "confirm": "Close window",
+                "cancel": "Cancel"
+            },
+            "_notifyPromptIfComplete": {
+                "_isEnabled": false,
+                "title": "Confirm close",
+                "body": "Are you sure you want to close the window?",
+                "confirm": "Close window",
+                "cancel": "Cancel"
+            }
         },
         "browserPromptIfIncomplete": "",
         "browserPromptIfComplete": ""

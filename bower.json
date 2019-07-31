@@ -4,7 +4,6 @@
   "framework": ">=2.0.4",
   "displayName": "Close",
   "extension": "close",
-  "targetAttribute": "_close",
   "description": "An extension to add a close button and/or prompts",
   "main": "/js/adapt-close.js",
   "keywords": [
