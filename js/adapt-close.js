@@ -1,4 +1,6 @@
-define([ 'core/js/adapt' ], function(Adapt) {
+define([
+  'core/js/adapt'
+], function(Adapt) {
 
   var CloseView = Backbone.View.extend({
 
@@ -16,7 +18,7 @@ define([ 'core/js/adapt' ], function(Adapt) {
 
       var template = Handlebars.templates.close;
 
-      this.setElement(template(data)).$el.prependTo($('.nav__inner'));
+      this.setElement(template(data)).$el.insertAfter($('.js-nav-back-btn'));
     },
 
     onCloseButton: function() {
