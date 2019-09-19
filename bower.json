@@ -1,9 +1,9 @@
 {
   "name": "adapt-close",
-  "version": "1.1.1",
-  "framework": ">=2.0.4",
-  "displayName": "Close",
+  "version": "2.0.0",
+  "framework": ">=5",
   "extension": "close",
+  "displayName": "Close",
   "description": "An extension to add a close button and/or prompts",
   "main": "/js/adapt-close.js",
   "keywords": [
