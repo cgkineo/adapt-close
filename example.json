@@ -1,23 +1,24 @@
-"_close": {
-    "_isEnabled": true,
-    "_button": {
+    // To go in the course.json file
+    "_close": {
         "_isEnabled": true,
-        "_closeViaLMSFinish": false,
-        "_notifyPromptIfIncomplete": {
-            "_isEnabled": false,
-            "title": "Confirm close",
-            "body": "Are you sure you want to close the window?",
-            "confirm": "Close window",
-            "cancel": "Cancel"
+        "_button": {
+            "_isEnabled": true,
+            "_closeViaLMSFinish": false,
+            "_notifyPromptIfIncomplete": {
+                "_isEnabled": false,
+                "title": "Confirm close",
+                "body": "Are you sure you want to close the window?",
+                "confirm": "Close window",
+                "cancel": "Cancel"
+            },
+            "_notifyPromptIfComplete": {
+                "_isEnabled": false,
+                "title": "Confirm close",
+                "body": "Are you sure you want to close the window?",
+                "confirm": "Close window",
+                "cancel": "Cancel"
+            }
         },
-        "_notifyPromptIfComplete": {
-            "_isEnabled": false,
-            "title": "Confirm close",
-            "body": "Are you sure you want to close the window?",
-            "confirm": "Close window",
-            "cancel": "Cancel"
-        }
-    },
-    "browserPromptIfIncomplete": "",
-    "browserPromptIfComplete": ""
-}
+        "browserPromptIfIncomplete": "",
+        "browserPromptIfComplete": ""
+    }
