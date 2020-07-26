@@ -118,4 +118,4 @@ An extension to add a close button and/or prompts.
 	</tr>
 </table>
 
-* Note: Firefox doesn’t currently support custom messages in its dialogs.
+* Note: Firefox doesn’t support custom messages in its dialogs. UPDATE July 2020 Neither Chrome nor Edge (the new version that's based on Chromium) allow custom messages any more. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
