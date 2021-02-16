@@ -2,20 +2,19 @@
 
 An extension to add a close button and/or prompts.
 
-## Installation
+As of v2.1.0 this extension will now call `LMSFinish` on close if the Spoor extension is installed, enabled and connected to an LMS. This can be used as a workaround for those Learning Management Systems that are affected by the [disallow sync XHR in page dismissal](https://www.chromestatus.com/feature/4664843055398912) change to Chromium-based browsers (such as Chrome, Edge and Opera) and which have yet to be updated to avoid being affected by this change.
 
+## Installation
 * Add the [example JSON](example.json) to `course.json`.
 * With [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run `adapt install close`. Alternatively, download the ZIP and extract into the src > extensions directory.
 * Run an appropriate Grunt task.
 
 ## Usage
-
 * A close button can be added to the navigation bar.
 * Prompts using notify can be triggered on this button.
 * In addition, browser dialogs can be displayed if you close the window in a normal fashion.
 
 ## Attributes
-
 <table>
 	<tr>
 		<th colspan="3">Attribute<br></th>
@@ -39,7 +38,7 @@ An extension to add a close button and/or prompts.
 	<tr>
 		<td colspan="2"><code>_closeViaLMSFinish</code></td>
 		<td>Boolean</td>
-		<td>Set to <code>true</code> to have the button directly call the SCORM 'finish' function to close the course. This can be useful when the course hasn't been opened in a new window or where the course window can't be closed via JavaScript.</td>
+		<td>Set to <code>true</code> to let the SCORM <code>LMSFinish</code> routine handle closing the course. This can be useful when the course hasn't been opened in a new window or where the course window can't be closed via JavaScript.</td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>
