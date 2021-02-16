@@ -48,8 +48,13 @@ define([
       var config = Adapt.course.get('_close');
       config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
-      var scorm = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
-      if (scorm && !scorm.getInstance().finishCalled) scorm.getInstance().finish();
+      var scormWrapper = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
+      if (scormWrapper) {
+        var scormWrapperInstance = scormWrapper.getInstance();
+        if (scormWrapperInstance.lmsConnected && !scormWrapperInstance.finishCalled) {
+          scormWrapperInstance.finish();
+        }
+      }
 
       if (config._button._closeViaLMSFinish) return;
 
