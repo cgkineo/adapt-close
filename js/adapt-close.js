@@ -28,7 +28,7 @@ define([
 
       if (!prompt || !prompt._isEnabled) return Adapt.trigger('close:confirm');
 
-      Adapt.notify.propmpt({
+      Adapt.notify.prompt({
         title: prompt.title,
         body: prompt.body,
         _prompts: [
