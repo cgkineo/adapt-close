@@ -12,7 +12,7 @@ As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor ext
 ## Usage
 * A close button can be added to the navigation bar.
 * When the learner clicks the close button, a [Notify](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#notify) prompt can be shown that asks the learner to confirm they want to exit (or return to the course)
-* A browser dialog can be displayed if the learner closes the window/tab in a normal fashion i.e. using the browser window/tab close button/using an equivalent keyboard shortcut
+* A browser dialog can be displayed if the learner closes the window/tab in a normal fashion i.e. using the browser window/tab close button/equivalent keyboard shortcut
 
 ## Attributes
 ### \_isEnabled (boolean):
