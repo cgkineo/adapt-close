@@ -23,94 +23,94 @@ As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor ext
 		<th>Default</th>
 	</tr>
 	<tr>
-		<td colspan="3"><code>_isEnabled</code></td>
+		<td colspan="3"><h5><code>_isEnabled</code></h5></td>
 		<td>Boolean</td>
 		<td>Set to <code>false</code> to completely disable the extension</td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td rowspan="12"><code>_button</code></td>
-		<td colspan="2"><code>_isEnabled</code></td>
+		<td rowspan="12"><h5><code>_button</code></h5></td>
+		<td colspan="2"><h5><code>_isEnabled</code></h5></td>
 		<td>Boolean</td>
 		<td>Adds a close button to the navigation bar</td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td colspan="2"><code>_closeViaLMSFinish</code></td>
+		<td colspan="2"><h5><code>_closeViaLMSFinish</code></h5></td>
 		<td>Boolean</td>
 		<td>Set to <code>true</code> to let the SCORM <code>LMSFinish</code> routine handle closing the course. This can be useful when the course hasn't been opened in a new window or where the course window can't be closed via JavaScript.</td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td rowspan="5"><code>_notifyPromptIfIncomplete</code></td>
-		<td><code>_isEnabled</code></td>
+		<td rowspan="5"><h5><code>_notifyPromptIfIncomplete</code></h5></td>
+		<td><h5><code>_isEnabled</code></h5></td>
 		<td>Boolean</td>
 		<td>Displays a notify prompt if the close button is selected while the course is incomplete</td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td><code>title</code></td>
+		<td><h5><code>title</code></h5></td>
 		<td>String</td>
 		<td>Prompt title</td>
 		<td><code>"Confirm close"</code></td>
 	</tr>
 	<tr>
-		<td><code>body</code></td>
+		<td><h5><code>body</code></h5></td>
 		<td>String</td>
 		<td>Prompt message<br></td>
 		<td><code>"Are you sure you want to close the window?"</code></td>
 	</tr>
 	<tr>
-		<td><code>confirm</code></td>
+		<td><h5><code>confirm</code></h5></td>
 		<td>String</td>
 		<td>Confirm button text</td>
 		<td><code>"Close window"</code></td>
 	</tr>
 	<tr>
-		<td><code>cancel</code></td>
+		<td><h5><code>cancel</code></h5></td>
 		<td>String</td>
 		<td>Cancel button text<br></td>
 		<td><code>"Cancel"</code></td>
 	</tr>
 	<tr>
-		<td rowspan="5"><code>_notifyPromptIfComplete</code></td>
-		<td><code>_isEnabled</code></td>
+		<td rowspan="5"><h5><code>_notifyPromptIfComplete</code></h5></td>
+		<td><h5><code>_isEnabled</code></h5></td>
 		<td>Boolean</td>
 		<td>Displays a notify prompt if the close button is selected after the course has been completed</td>
 		<td><code>false</code></td>
 	</tr>
 	<tr>
-		<td><code>title</code></td>
+		<td><h5><code>title</code></h5></td>
 		<td>String</td>
 		<td>Prompt title</td>
 		<td><code>"Confirm close"</code></td>
 	</tr>
 	<tr>
-		<td><code>body</code></td>
+		<td><h5><code>body</code></h5></td>
 		<td>String</td>
 		<td>Prompt message</td>
 		<td><code>"Are you sure you want to close the window?"</code></td>
 	</tr>
 	<tr>
-		<td><code>confirm</code></td>
+		<td><h5><code>confirm</code></h5></td>
 		<td>String</td>
 		<td>Confirm button text</td>
 		<td><code>"Close window"</code></td>
 	</tr>
 	<tr>
-		<td><code>cancel</code></td>
+		<td><h5><code>cancel</code></h5></td>
 		<td>String</td>
 		<td>Cancel button text</td>
 		<td><code>"Cancel"</code></td>
 	</tr>
 	<tr>
-		<td colspan="3"><code>browserPromptIfIncomplete</code></td>
+		<td colspan="3"><h5><code>browserPromptIfIncomplete</code></h5></td>
 		<td>String</td>
 		<td>Populate with text to display a browser dialog if the window is closed while the course is incomplete</td>
 		<td><code>""</code></td>
 	</tr>
 	<tr>
-		<td colspan="3"><code>browserPromptIfComplete</code></td>
+		<td colspan="3"><h5><code>browserPromptIfComplete</code></h5></td>
 		<td>String<br></td>
 		<td>Populate with text to display a browser dialog if the window is closed after the course has been completed</td>
 		<td><code>""</code></td>
