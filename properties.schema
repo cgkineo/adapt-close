@@ -68,14 +68,14 @@
                         },
                         "body": {
                           "type": "string",
-                          "default": "Are you sure you want to close the window?",
+                          "default": "Are you sure you want to exit the course?",
                           "inputType": "TextArea",
                           "help": "Enter the prompt message",
                           "translatable": true
                         },
                         "confirm": {
                           "type": "string",
-                          "default": "Close window",
+                          "default": "Exit course",
                           "inputType": "Text",
                           "help": "Enter the confirm button text",
                           "translatable": true
@@ -109,14 +109,14 @@
                         },
                         "body": {
                           "type": "string",
-                          "default": "Are you sure you want to close the window?",
+                          "default": "Are you sure you want to exit the course?",
                           "inputType": "TextArea",
                           "help": "Enter the prompt message",
                           "translatable": true
                         },
                         "confirm": {
                           "type": "string",
-                          "default": "Close window",
+                          "default": "Exit course",
                           "inputType": "Text",
                           "help": "Enter the confirm button text",
                           "translatable": true
