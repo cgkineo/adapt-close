@@ -24,7 +24,7 @@ Populate with text to display a browser dialog if the learner attempts to close 
 * `browserPromptIfComplete` (string):  
 Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course has been completed
 
-**Note:** Firefox, Chrome and Edge do not allow custom text to be included in the browser dialog. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
+  **Note:** Firefox, Chrome and Edge do not allow custom text to be included in the browser dialog. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
 
 * `_button` (object):
 Contains the following settings:
