@@ -15,58 +15,58 @@ As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor ext
 * A browser dialog can be displayed if the learner closes the window/tab in a normal fashion i.e. using the browser window/tab close button/equivalent keyboard shortcut
 
 ## Attributes
-### \_isEnabled (boolean):
+* \_isEnabled (boolean):  
 Enables/disables this extension. The default value is `false`. Set this to `true` to enable this extension.
 
-### browserPromptIfIncomplete (string):
+* browserPromptIfIncomplete (string):  
 Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course hasn't yet been completed
 
-### browserPromptIfComplete (string):
+* browserPromptIfComplete (string):  
 Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course has been completed
 
 **Note:** Firefox, Chrome and Edge do not allow custom text to be included in the browser dialog. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
 
-### \_button (object):
+* \_button (object):
 Contains the following settings:
 
-### \_isEnabled (boolean):
+  * \_isEnabled (boolean):
 Controls whether a close button should be added to the top navigation bar or not. Set this to `false` if you just want to have the browser dialog (see above) show on exit. The default value is `false`.
 
-### \_closeViaLMSFinish (boolean):
+  * \_closeViaLMSFinish (boolean):
 Set to `true` to let the SCORM `LMSFinish` routine handle closing the course. This can be useful when the course hasn't been opened in a new window or where the course window can't be closed via JavaScript. This setting should only be enabled if the course will be launched from a SCORM-conformant Learning Management System that supports this functionality. The default value is `false`.
 
-### \_notifyPromptIfIncomplete (object):
+  * \_notifyPromptIfIncomplete (object):  
 Contains the following settings:
 
-#### \_isEnabled (boolean):
+    * \_isEnabled (boolean):  
 Controls whether a prompt should be displayed if the learner clicks the close button when the course hasn't yet been completed. The default value is `false`.
 
-#### title (string):
+    * title (string):  
 Title of the prompt e.g. "Confirm close"
 
-#### body (string):
+    * body (string):  
 Body text of the prompt e.g. "Are you sure you want to exit the course? You have not yet completed all the content."
 
-#### confirm (string):
+    * confirm (string):  
 Confirm button text e.g. "Exit course".
 
-#### cancel (string):
+    * cancel (string):  
 Cancel button text e.g. "Cancel".
 
-### \_notifyPromptIfComplete (object):
+  * \_notifyPromptIfComplete (object):  
 Contains the following settings:
 
-#### \_isEnabled (boolean):
+    * \_isEnabled (boolean):  
 Controls whether a prompt should be displayed if the learner clicks the close button when the course has been completed. The default value is `false`.
 
-#### title (string):
+    * title (string):  
 Title of the prompt e.g. "Confirm close"
 
-#### body (string):
+    * body (string):  
 Body text of the prompt e.g. "Are you sure you want to exit the course?"
 
-#### confirm (string):
+    * confirm (string):  
 Confirm button text e.g. "Exit course".
 
-#### cancel (string):
+    * cancel (string):  
 Cancel button text e.g. "Cancel".
