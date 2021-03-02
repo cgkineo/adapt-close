@@ -6,115 +6,67 @@ As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor ext
 
 ## Installation
 * Add the [example JSON](example.json) to `course.json`.
-* With [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run `adapt install close`. Alternatively, download the ZIP and extract into the src > extensions directory.
+* With [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run `adapt install close`. Alternatively, [download the ZIP](https://github.com/cgkineo/adapt-close/archive/master.zip) and extract into the src > extensions directory.
 * Run an appropriate Grunt task.
 
 ## Usage
 * A close button can be added to the navigation bar.
-* A [Notify](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#notify) 'confirm' prompt can be shown when the learner clicks the close button
-* In addition, a browser dialog can be displayed if the learner closes the window/tab in a normal fashion.
+* When the learner clicks the close button, a [Notify](https://github.com/adaptlearning/adapt_framework/wiki/Core-modules#notify) prompt can be shown that asks the learner to confirm they want to exit (or return to the course)
+* A browser dialog can be displayed if the learner closes the window/tab in a normal fashion i.e. using the browser window/tab close button/equivalent keyboard shortcut
 
 ## Attributes
-<table>
-	<tr>
-		<th colspan="3">Attribute<br></th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>Default</th>
-	</tr>
-	<tr>
-		<td colspan="3"><code>_isEnabled</code></td>
-		<td>Boolean</td>
-		<td>Set to <code>false</code> to completely disable the extension</td>
-		<td><code>false</code></td>
-	</tr>
-	<tr>
-		<td rowspan="12"><code>_button</code></td>
-		<td colspan="2"><code>_isEnabled</code></td>
-		<td>Boolean</td>
-		<td>Adds a close button to the navigation bar</td>
-		<td><code>false</code></td>
-	</tr>
-	<tr>
-		<td colspan="2"><code>_closeViaLMSFinish</code></td>
-		<td>Boolean</td>
-		<td>Set to <code>true</code> to let the SCORM <code>LMSFinish</code> routine handle closing the course. This can be useful when the course hasn't been opened in a new window or where the course window can't be closed via JavaScript.</td>
-		<td><code>false</code></td>
-	</tr>
-	<tr>
-		<td rowspan="5"><code>_notifyPromptIfIncomplete</code></td>
-		<td><code>_isEnabled</code></td>
-		<td>Boolean</td>
-		<td>Displays a notify prompt if the close button is selected while the course is incomplete</td>
-		<td><code>false</code></td>
-	</tr>
-	<tr>
-		<td><code>title</code></td>
-		<td>String</td>
-		<td>Prompt title</td>
-		<td><code>"Confirm close"</code></td>
-	</tr>
-	<tr>
-		<td><code>body</code></td>
-		<td>String</td>
-		<td>Prompt message<br></td>
-		<td><code>"Are you sure you want to close the window?"</code></td>
-	</tr>
-	<tr>
-		<td><code>confirm</code></td>
-		<td>String</td>
-		<td>Confirm button text</td>
-		<td><code>"Close window"</code></td>
-	</tr>
-	<tr>
-		<td><code>cancel</code></td>
-		<td>String</td>
-		<td>Cancel button text<br></td>
-		<td><code>"Cancel"</code></td>
-	</tr>
-	<tr>
-		<td rowspan="5"><code>_notifyPromptIfComplete</code></td>
-		<td><code>_isEnabled</code></td>
-		<td>Boolean</td>
-		<td>Displays a notify prompt if the close button is selected after the course has been completed</td>
-		<td><code>false</code></td>
-	</tr>
-	<tr>
-		<td><code>title</code></td>
-		<td>String</td>
-		<td>Prompt title</td>
-		<td><code>"Confirm close"</code></td>
-	</tr>
-	<tr>
-		<td><code>body</code></td>
-		<td>String</td>
-		<td>Prompt message</td>
-		<td><code>"Are you sure you want to close the window?"</code></td>
-	</tr>
-	<tr>
-		<td><code>confirm</code></td>
-		<td>String</td>
-		<td>Confirm button text</td>
-		<td><code>"Close window"</code></td>
-	</tr>
-	<tr>
-		<td><code>cancel</code></td>
-		<td>String</td>
-		<td>Cancel button text</td>
-		<td><code>"Cancel"</code></td>
-	</tr>
-	<tr>
-		<td colspan="3"><code>browserPromptIfIncomplete</code></td>
-		<td>String</td>
-		<td>Populate with text to display a browser dialog if the window is closed while the course is incomplete</td>
-		<td><code>""</code></td>
-	</tr>
-	<tr>
-		<td colspan="3"><code>browserPromptIfComplete</code></td>
-		<td>String<br></td>
-		<td>Populate with text to display a browser dialog if the window is closed after the course has been completed</td>
-		<td><code>""</code></td>
-	</tr>
-</table>
+### `_isEnabled` (boolean):
+Enables/disables this extension. The default value is `false`. Set this to `true` to enable this extension.
 
-* Note: Firefox doesn’t support custom messages in its dialogs. UPDATE July 2020 Neither Chrome nor Edge (the new version that's based on Chromium) allow custom messages any more. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
+### `browserPromptIfIncomplete` (string):
+Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course hasn't yet been completed
+
+### `browserPromptIfComplete` (string):
+Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course has been completed
+
+  **Note:** Firefox, Chrome and Edge do not allow custom text to be included in the browser dialog. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
+
+### `_button` (object):
+Contains the following settings:
+
+  * `_isEnabled` (boolean):  
+Controls whether a close button should be added to the top navigation bar or not. Set this to `false` if you just want to have the browser dialog (see above) show on exit. The default value is `false`.
+
+  * `_closeViaLMSFinish` (boolean): 
+Set to `true` to let the SCORM `LMSFinish` routine handle closing the course. This can be useful when the course hasn't been opened in a new window or where the course window can't be closed via JavaScript. This setting should only be enabled if the course will be launched from a SCORM-conformant Learning Management System that supports this functionality. The default value is `false`.
+
+  * `_notifyPromptIfIncomplete` (object):  
+Contains the following settings:
+
+    * `_isEnabled` (boolean):  
+Controls whether a prompt should be displayed if the learner clicks the close button when the course hasn't yet been completed. The default value is `false`.
+
+    * `title` (string):  
+Title of the prompt e.g. "Confirm close"
+
+    * `body` (string):  
+Body text of the prompt e.g. "Are you sure you want to exit the course? You have not yet completed all the content."
+
+    * `confirm` (string):  
+Confirm button text e.g. "Exit course".
+
+    * `cancel` (string):  
+Cancel button text e.g. "Cancel".
+
+  * `_notifyPromptIfComplete` (object):  
+Contains the following settings:
+
+    * `_isEnabled` (boolean):  
+Controls whether a prompt should be displayed if the learner clicks the close button when the course has been completed. The default value is `false`.
+
+    * `title` (string):  
+Title of the prompt e.g. "Confirm close"
+
+    * `body` (string):  
+Body text of the prompt e.g. "Are you sure you want to exit the course?"
+
+    * `confirm` (string):  
+Confirm button text e.g. "Exit course".
+
+    * `cancel` (string):  
+Cancel button text e.g. "Cancel".

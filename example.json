@@ -7,15 +7,15 @@
             "_notifyPromptIfIncomplete": {
                 "_isEnabled": false,
                 "title": "Confirm close",
-                "body": "Are you sure you want to close the window?",
-                "confirm": "Close window",
+                "body": "Are you sure you want to exit the course?",
+                "confirm": "Exit course",
                 "cancel": "Cancel"
             },
             "_notifyPromptIfComplete": {
                 "_isEnabled": false,
                 "title": "Confirm close",
-                "body": "Are you sure you want to close the window?",
-                "confirm": "Close window",
+                "body": "Are you sure you want to exit the course?",
+                "confirm": "Exit window",
                 "cancel": "Cancel"
             }
         },
