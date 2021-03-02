@@ -28,7 +28,7 @@ define([
 
       if (!prompt || !prompt._isEnabled) return Adapt.trigger('close:confirm');
 
-      Adapt.trigger('notify:prompt', {
+      Adapt.notify.prompt({
         title: prompt.title,
         body: prompt.body,
         _prompts: [
@@ -48,12 +48,17 @@ define([
       var config = Adapt.course.get('_close');
       config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
-      if (config._button._closeViaLMSFinish) {
-        var scorm = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
-        if (scorm) scorm.getInstance().finish();
-      } else {
-        top.window.close();
+      var scormWrapper = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
+      if (scormWrapper) {
+        var scormWrapperInstance = scormWrapper.getInstance();
+        if (scormWrapperInstance.lmsConnected && !scormWrapperInstance.finishCalled) {
+          scormWrapperInstance.finish();
+        }
       }
+
+      if (config._button._closeViaLMSFinish) return;
+
+      top.window.close();
     }
 
   });
