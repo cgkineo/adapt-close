@@ -2,7 +2,7 @@
 
 An extension to add a close button and/or prompts.
 
-As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor extension](https://github.com/adaptlearning/adapt-contrib-spoor) is installed, enabled and connected to an LMS. This can be used as a workaround for those Learning Management Systems that are affected by the [disallow sync XHR in page dismissal](https://www.chromestatus.com/feature/4664843055398912) change to Chromium-based browsers (such as Chrome, Edge and Opera) and which have yet to be updated to avoid being affected by this change. Note that this will only work if the close button functionality is enabled and the learner uses the close button to close the course. It will **not** have any impact if the learner closes the browser window/tab directly.
+As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor extension](https://github.com/adaptlearning/adapt-contrib-spoor) is installed, enabled and connected to an LMS. This can be used as a workaround for those Learning Management Systems that are affected by the [disallow sync XHR in page dismissal](https://github.com/adaptlearning/adapt_framework/wiki/SCORM,-closing-windows,-LMSFinish-and-synchronous-XHR-dismissals) change to Chromium-based browsers (such as Chrome, Edge and Opera) and which have yet to be updated to avoid being affected by this change. Note that this will only work if the close button functionality is enabled and the learner uses the close button to close the course. It will **not** have any impact if the learner closes the browser window/tab directly.
 
 ## Installation
 * Add the [example JSON](example.json) to `course.json`.
