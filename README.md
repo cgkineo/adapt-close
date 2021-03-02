@@ -15,18 +15,18 @@ As of v2.1.0 this extension will now call `LMSFinish` on close if the [Spoor ext
 * A browser dialog can be displayed if the learner closes the window/tab in a normal fashion i.e. using the browser window/tab close button/equivalent keyboard shortcut
 
 ## Attributes
-* `_isEnabled` (boolean):  
+### `_isEnabled` (boolean):
 Enables/disables this extension. The default value is `false`. Set this to `true` to enable this extension.
 
-* `browserPromptIfIncomplete` (string):  
+### `browserPromptIfIncomplete` (string):
 Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course hasn't yet been completed
 
-* `browserPromptIfComplete` (string):  
+### `browserPromptIfComplete` (string):
 Populate with text to display a browser dialog if the learner attempts to close the course window/tab when the course has been completed
 
   **Note:** Firefox, Chrome and Edge do not allow custom text to be included in the browser dialog. Additionally, most 'evergreen' browsers now seem to ignore any attempt to display a dialog in response to the `beforeunload` event if the user hasn't interacted with the page.
 
-* `_button` (object):  
+### `_button` (object):
 Contains the following settings:
 
   * `_isEnabled` (boolean):  
