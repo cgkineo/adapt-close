@@ -1,0 +1,190 @@
+{
+  "$anchor": "close-course",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$patch": {
+    "source": {
+      "$ref": "course"
+    },
+    "with": {
+      "properties": {
+        "_globals": {
+          "type": "object",
+          "default": {},
+          "properties": {
+            "_close": {
+              "type": "object",
+              "default": {},
+              "properties": {
+                "closeButton": {
+                  "type": "string",
+                  "title": "Close button",
+                  "default": "Select here to close the window.",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                },
+                "_navOrder": {
+                  "type": "number",
+                  "title": "Nav order",
+                  "description": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
+                  "default": 150,
+                  "validators": []
+                }
+              }
+            }
+          }
+        },
+        "_close": {
+          "type": "object",
+          "title": "Close",
+          "default": {},
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "title": "Enabled?",
+              "default": true
+            },
+            "_button": {
+              "type": "object",
+              "title": "Button",
+              "default": {},
+              "properties": {
+                "_closeViaLMSFinish": {
+                  "type": "boolean",
+                  "title": "Close via LMSFinish?",
+                  "description": "Enables closing the course via the SCORM 'finish' function rather than by closing the window - useful for LMSes that don't open the course in a new window or don't allow the course window to be closed via JavaScript.",
+                  "default": false
+                },
+                "_isEnabled": {
+                  "type": "boolean",
+                  "title": "Enabled?",
+                  "description": "Set to 'true' to add a close button to the navigation bar",
+                  "default": true
+                },
+                "_notifyPromptIfIncomplete": {
+                  "type": "object",
+                  "title": "Notify prompt if incomplete",
+                  "default": {},
+                  "properties": {
+                    "_isEnabled": {
+                      "type": "boolean",
+                      "title": "Enabled?",
+                      "description": "Set to true to display a notify prompt if the close button is selected while the course is incomplete",
+                      "default": false
+                    },
+                    "title": {
+                      "type": "string",
+                      "title": "Title",
+                      "description": "Enter the prompt title",
+                      "default": "Confirm close",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "body": {
+                      "type": "string",
+                      "title": "Body",
+                      "description": "Enter the prompt message",
+                      "default": "Are you sure you want to exit the course?",
+                      "_adapt": {
+                        "translatable": true
+                      },
+                      "_backboneForms": "TextArea"
+                    },
+                    "confirm": {
+                      "type": "string",
+                      "title": "Confirm",
+                      "description": "Enter the confirm button text",
+                      "default": "Exit course",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "cancel": {
+                      "type": "string",
+                      "title": "Cancel",
+                      "description": "Enter the cancel button text",
+                      "default": "Cancel",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    }
+                  }
+                },
+                "_notifyPromptIfComplete": {
+                  "type": "object",
+                  "title": "Notify prompt if complete",
+                  "default": {},
+                  "properties": {
+                    "_isEnabled": {
+                      "type": "boolean",
+                      "title": "Enabled?",
+                      "description": "Set to 'true' to display a notify prompt if the close button is selected after the course has been completed",
+                      "default": false
+                    },
+                    "title": {
+                      "type": "string",
+                      "title": "Title",
+                      "description": "Enter the prompt title",
+                      "default": "Confirm close",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "body": {
+                      "type": "string",
+                      "title": "Body",
+                      "description": "Enter the prompt message",
+                      "default": "Are you sure you want to exit the course?",
+                      "_adapt": {
+                        "translatable": true
+                      },
+                      "_backboneForms": "TextArea"
+                    },
+                    "confirm": {
+                      "type": "string",
+                      "title": "Confirm",
+                      "description": "Enter the confirm button text",
+                      "default": "Exit course",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "cancel": {
+                      "type": "string",
+                      "title": "Cancel",
+                      "description": "Enter the cancel button text",
+                      "default": "Cancel",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "browserPromptIfIncomplete": {
+              "type": "string",
+              "title": "Browser prompt if incomplete",
+              "description": "Enter text to display a browser dialog if the window is closed while the course is incomplete",
+              "default": "",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "browserPromptIfComplete": {
+              "type": "string",
+              "title": "Browser prompt if complete",
+              "description": "Enter text to display a browser dialog if the window is closed after the course has been completed",
+              "default": "",
+              "_adapt": {
+                "translatable": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
