@@ -9,6 +9,13 @@
       "title": "Close button",
       "inputType": "Text",
       "translatable": true
+    },
+    "_navOrder": {
+      "type": "number",
+      "required": true,
+      "default": 150,
+      "inputType": "Text",
+      "validators": []
     }
   },
   "properties": {

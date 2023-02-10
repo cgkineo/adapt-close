@@ -2,7 +2,7 @@ define([
   'core/js/adapt'
 ], function(Adapt) {
 
-  var CloseView = Backbone.View.extend({
+  const CloseView = Backbone.View.extend({
 
     initialize: function() {
       this.listenTo(Adapt, {
@@ -13,16 +13,16 @@ define([
     },
 
     render: function() {
-      var data = this.model.toJSON();
+      const data = this.model.toJSON();
       data._globals = Adapt.course.get('_globals');
 
-      var template = Handlebars.templates.close;
+      const template = Handlebars.templates.close;
 
-      this.setElement(template(data)).$el.insertAfter($('.js-nav-back-btn'));
+      this.setElement(template(data)).$el.appendTo('.nav__inner');
     },
 
     onCloseButton: function() {
-      var prompt = !Adapt.course.get('_isComplete') ?
+      const prompt = !Adapt.course.get('_isComplete') ?
         this.model.get('_notifyPromptIfIncomplete') :
         this.model.get('_notifyPromptIfComplete');
 
@@ -44,13 +44,13 @@ define([
     },
 
     onCloseConfirm: function() {
-      //ensure that the browser prompt doesn't get triggered as well
-      var config = Adapt.course.get('_close');
+      // ensure that the browser prompt doesn't get triggered as well
+      const config = Adapt.course.get('_close');
       config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
 
-      var scormWrapper = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
+      const scormWrapper = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
       if (scormWrapper) {
-        var scormWrapperInstance = scormWrapper.getInstance();
+        const scormWrapperInstance = scormWrapper.getInstance();
         if (scormWrapperInstance.lmsConnected && !scormWrapperInstance.finishCalled) {
           scormWrapperInstance.finish();
         }
@@ -70,11 +70,11 @@ define([
   }
 
   function initialise() {
-    var config = Adapt.course.get('_close');
+    const config = Adapt.course.get('_close');
 
     if (!config || !config._isEnabled) return;
 
-    var button = config._button;
+    const button = config._button;
 
     if (button && button._isEnabled) {
       new CloseView({ model: new Backbone.Model(button) });
