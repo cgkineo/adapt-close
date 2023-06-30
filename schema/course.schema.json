@@ -12,24 +12,30 @@
           "type": "object",
           "default": {},
           "properties": {
-            "_close": {
+            "_extensions": {
               "type": "object",
               "default": {},
               "properties": {
-                "closeButton": {
-                  "type": "string",
-                  "title": "Close button ARIA label",
-                  "default": "Select here to close the window.",
-                  "_adapt": {
-                    "translatable": true
+                "_close": {
+                  "type": "object",
+                  "title": "Close",
+                  "default": {},
+                  "properties": {
+                    "closeButton": {
+                      "type": "string",
+                      "title": "Close button ARIA label",
+                      "default": "Select here to close the window.",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "_navOrder": {
+                      "type": "number",
+                      "title": "Close button Nav order",
+                      "description": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
+                      "default": 150
+                    }
                   }
-                },
-                "_navOrder": {
-                  "type": "number",
-                  "title": "Close button Nav order",
-                  "description": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
-                  "default": 150,
-                  "validators": []
                 }
               }
             }
