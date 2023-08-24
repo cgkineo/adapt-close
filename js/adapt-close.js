@@ -92,7 +92,7 @@ define([
     Adapt.on('app:languageChanged', function () {
       $(window).off('beforeunload.close');
       // have to wait until the navbar is ready
-      Adapt.once('router:location', initialise);
+      Adapt.once('navigationView:postRender', initialise);
     });
   });
 });
