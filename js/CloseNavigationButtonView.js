@@ -1,6 +1,7 @@
 import Adapt from 'core/js/adapt';
 import NavigationButtonView from 'core/js/views/NavigationButtonView';
 import tooltips from 'core/js/tooltips';
+import notify from 'core/js/notify';
 
 export default class CloseNavigationButtonView extends NavigationButtonView {
 
@@ -49,7 +50,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
 
     if (!prompt || !prompt._isEnabled) return Adapt.trigger('close:confirm');
 
-    Adapt.notify.prompt({
+    notify.prompt({
       title: prompt.title,
       body: prompt.body,
       _prompts: [
