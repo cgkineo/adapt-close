@@ -16,7 +16,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
   }
 
   static get template() {
-    return 'AdaptCloseButton.jsx';
+    return 'CloseNavigationButton.jsx';
   }
 
   className() {
