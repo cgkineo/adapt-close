@@ -9,7 +9,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
     return {
       name: attributes._id,
       role: attributes._role === 'button' ? undefined : attributes._role,
-      'aria-label': Adapt.AdaptClose.config._button.navigationAriaLabel,
+      'aria-label': Adapt.adaptclose.config._button.navigationAriaLabel,
       'data-order': attributes._order,
       'data-tooltip-id': 'adaptclose'
     };
