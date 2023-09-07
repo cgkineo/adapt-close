@@ -1,98 +1,75 @@
-define([
-  'core/js/adapt'
-], function(Adapt) {
+import Backbone from 'backbone';
+import Adapt from 'core/js/adapt';
+import navigation from 'core/js/navigation';
+import NavigationButtonModel from 'core/js/models/NavigationButtonModel';
+import CloseNavigationButtonView from './CloseNavigationButtonView';
 
-  const CloseView = Backbone.View.extend({
+class AdaptClose extends Backbone.Controller {
 
-    initialize: function() {
-      this.listenTo(Adapt, {
-        'navigation:closeButton': this.onCloseButton,
-        'close:confirm': this.onCloseConfirm,
-        'app:languageChanged': this.remove
-      }).render();
-    },
-
-    render: function() {
-      const data = this.model.toJSON();
-      data._globals = Adapt.course.get('_globals');
-
-      const template = Handlebars.templates.close;
-
-      this.setElement(template(data)).$el.appendTo('.nav__inner');
-    },
-
-    onCloseButton: function() {
-      const prompt = !Adapt.course.get('_isComplete') ?
-        this.model.get('_notifyPromptIfIncomplete') :
-        this.model.get('_notifyPromptIfComplete');
-
-      if (!prompt || !prompt._isEnabled) return Adapt.trigger('close:confirm');
-
-      Adapt.notify.prompt({
-        title: prompt.title,
-        body: prompt.body,
-        _prompts: [
-          {
-            promptText: prompt.confirm,
-            _callbackEvent: 'close:confirm'
-          },
-          {
-            promptText: prompt.cancel
-          }
-        ]
-      });
-    },
-
-    onCloseConfirm: function() {
-      // ensure that the browser prompt doesn't get triggered as well
-      const config = Adapt.course.get('_close');
-      config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
-
-      const scormWrapper = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
-      if (scormWrapper) {
-        const scormWrapperInstance = scormWrapper.getInstance();
-        if (scormWrapperInstance.lmsConnected && !scormWrapperInstance.finishCalled) {
-          scormWrapperInstance.finish();
-        }
-      }
-
-      if (config._button._closeViaLMSFinish) return;
-
-      top.window.close();
-    }
-
-  });
-
-  function onBeforeUnload(config) {
-    return !Adapt.course.get('_isComplete') ?
-      config.browserPromptIfIncomplete || undefined :
-      config.browserPromptIfComplete || undefined;
+  initialize() {
+    this.listenToOnce(Adapt, 'adapt:start', this.onStart);
   }
 
-  function initialise() {
+  get config () {
+    return Adapt.course.get('_close');
+  }
+
+  static get globalsConfig() {
+    return Adapt.course.get('_globals')?._extensions?._close;
+  }
+
+  onLanguageChange() {
+    $(window).off('beforeunload.close');
+    // have to wait until the navbar is ready
+    Adapt.once('navigationView:postRender', this.onStart);
+  }
+
+  onStart() {
     const config = Adapt.course.get('_close');
 
-    if (!config || !config._isEnabled) return;
+    if (!config?._isEnabled) return;
 
     const button = config._button;
 
     if (button && button._isEnabled) {
-      new CloseView({ model: new Backbone.Model(button) });
+      this.setupNavigationButton();
     }
 
     if (config.browserPromptIfIncomplete || config.browserPromptIfComplete) {
       $(window).off('beforeunload');// stop spoor from handling beforeunload - if it handles the event first, LMSFinish will get called regardless of what the user selects in the prompt
-      $(window).on('beforeunload.close', _.partial(onBeforeUnload, config));
+      $(window).on('beforeunload.close', _.partial(this.onBeforeUnload, config));
     }
+
+    this.listenTo(Adapt, 'app:languageChanged', this.onLanguageChange);
   }
 
-  Adapt.once('adapt:start', function() {
-    initialise();
+  setupNavigationButton() {
+    if (!this.config?._isEnabled) return;
 
-    Adapt.on('app:languageChanged', function () {
-      $(window).off('beforeunload.close');
-      // have to wait until the navbar is ready
-      Adapt.once('navigationView:postRender', initialise);
+    const {
+      _navOrder = 100,
+      _showLabel = true,
+      navLabel = ''
+    } = AdaptClose.globalsConfig ?? {};
+
+    const model = new NavigationButtonModel({
+      _id: 'adaptclose',
+      _order: _navOrder,
+      _showLabel,
+      _classes: 'btn-icon nav__btn nav__close-btn',
+      _iconClasses: '',
+      _role: 'button',
+      text: navLabel
     });
-  });
-});
+
+    navigation.addButton(new CloseNavigationButtonView({ model }));
+  }
+
+  onBeforeUnload(config) {
+    return !Adapt.course.get('_isComplete') ?
+      config.browserPromptIfIncomplete || undefined :
+      config.browserPromptIfComplete || undefined;
+  }
+}
+
+export default (Adapt.adaptclose = new AdaptClose());
