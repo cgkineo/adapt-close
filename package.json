@@ -1,7 +1,7 @@
 {
   "name": "adapt-close",
   "version": "2.2.0",
-  "framework": ">=5.30.2",
+  "framework": ">=5.30.3",
   "extension": "close",
   "displayName": "Close",
   "description": "An extension to add a close button and/or prompts",

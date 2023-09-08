@@ -48,7 +48,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
       this.model.get('_notifyPromptIfIncomplete') :
       this.model.get('_notifyPromptIfComplete');
 
-    if (!prompt || !prompt._isEnabled) return Adapt.trigger('close:confirm');
+    if (!prompt?._isEnabled) return Adapt.trigger('close:confirm');
 
     notify.prompt({
       title: prompt.title,
