@@ -7,8 +7,10 @@ import CloseNavigationButtonView from './CloseNavigationButtonView';
 class AdaptClose extends Backbone.Controller {
 
   initialize() {
+    this.onBeforeUnload = this.onBeforeUnload.bind(this);
     this.listenToOnce(Adapt, 'adapt:start', this.onStart);
   }
+
 
   get config () {
     return Adapt.course.get('_close');
