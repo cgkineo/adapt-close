@@ -25,19 +25,17 @@ class AdaptClose extends Backbone.Controller {
   }
 
   onStart() {
-    const config = Adapt.course.get('_close');
+    if (!this.config?._isEnabled) return;
 
-    if (!config?._isEnabled) return;
-
-    const button = config._button;
+    const button = this.config._button;
 
     if (button && button._isEnabled) {
       this.setupNavigationButton();
     }
 
-    if (config.browserPromptIfIncomplete || config.browserPromptIfComplete) {
+    if (this.config.browserPromptIfIncomplete || this.config.browserPromptIfComplete) {
       $(window).off('beforeunload');// stop spoor from handling beforeunload - if it handles the event first, LMSFinish will get called regardless of what the user selects in the prompt
-      $(window).on('beforeunload.close', _.partial(this.onBeforeUnload, config));
+      $(window).on('beforeunload.close', this.onBeforeUnload);
     }
 
     this.listenTo(Adapt, 'app:languageChanged', this.onLanguageChange);
@@ -59,16 +57,17 @@ class AdaptClose extends Backbone.Controller {
       _classes: 'btn-icon nav__btn nav__close-btn',
       _iconClasses: '',
       _role: 'button',
-      text: navLabel
+      text: navLabel,
+      config: this.config
     });
 
     navigation.addButton(new CloseNavigationButtonView({ model }));
   }
 
-  onBeforeUnload(config) {
+  onBeforeUnload() {
     return !Adapt.course.get('_isComplete') ?
-      config.browserPromptIfIncomplete || undefined :
-      config.browserPromptIfComplete || undefined;
+      this.config.browserPromptIfIncomplete || undefined :
+      this.config.browserPromptIfComplete || undefined;
   }
 }
 

@@ -12,7 +12,8 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
       role: attributes._role === 'button' ? undefined : attributes._role,
       'aria-label': Adapt.adaptclose.config._button.navigationAriaLabel,
       'data-order': attributes._order,
-      'data-tooltip-id': 'adaptclose'
+      'data-tooltip-id': 'adaptclose',
+      'data-event': 'closeButton'
     };
   }
 
@@ -25,6 +26,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
   }
 
   initialize(options) {
+    this.config = options.model.get('config');
     super.initialize(options);
     this.setUpEventListeners();
     this.render();
@@ -44,9 +46,11 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
   }
 
   onCloseButton() {
+    if (!this.config) return;
+
     const prompt = !Adapt.course.get('_isComplete') ?
-      this.model.get('_notifyPromptIfIncomplete') :
-      this.model.get('_notifyPromptIfComplete');
+      this.config._button?._notifyPromptIfIncomplete :
+      this.config._button?._notifyPromptIfComplete;
 
     if (!prompt?._isEnabled) return Adapt.trigger('close:confirm');
 
@@ -67,8 +71,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
 
   onCloseConfirm() {
     // ensure that the browser prompt doesn't get triggered as well
-    const config = Adapt.course.get('_close');
-    config.browserPromptIfIncomplete = config.browserPromptIfComplete = false;
+    this.config.browserPromptIfIncomplete = this.config.browserPromptIfComplete = false;
 
     const scormWrapper = require('extensions/adapt-contrib-spoor/js/scorm/wrapper');
     if (scormWrapper) {
@@ -78,7 +81,7 @@ export default class CloseNavigationButtonView extends NavigationButtonView {
       }
     }
 
-    if (config._button._closeViaLMSFinish) return;
+    if (this.config._button._closeViaLMSFinish) return;
 
     top.window.close();
   }
