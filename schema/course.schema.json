@@ -34,6 +34,33 @@
                       "title": "Close button Nav order",
                       "description": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
                       "default": 150
+                    },
+                    "navLabel": {
+                      "type": "string",
+                      "title": "Navigation bar button label",
+                      "default": "Close Course",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "_navTooltip": {
+                      "type": "object",
+                      "title": "Navigation tooltip",
+                      "properties": {
+                        "_isEnabled": {
+                          "type": "boolean",
+                          "title": "Enable tooltip for navigation button",
+                          "default": true
+                        },
+                        "text": {
+                          "type": "string",
+                          "title": "Tooltip text",
+                          "default": "Close",
+                          "_adapt": {
+                            "translatable": true
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -56,17 +83,25 @@
               "title": "Button",
               "default": {},
               "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "title": "Enabled?",
+                  "description": "Set to 'true' to add a close button to the navigation bar",
+                  "default": true
+                },
                 "_closeViaLMSFinish": {
                   "type": "boolean",
                   "title": "Close via LMSFinish?",
                   "description": "Enables closing the course via the SCORM 'finish' function rather than by closing the window - useful for LMSes that don't open the course in a new window or don't allow the course window to be closed via JavaScript.",
                   "default": false
                 },
-                "_isEnabled": {
-                  "type": "boolean",
-                  "title": "Enabled?",
-                  "description": "Set to 'true' to add a close button to the navigation bar",
-                  "default": true
+                "navigationAriaLabel": {
+                  "type": "string",
+                  "title": "Navigation button alt text",
+                  "default": "Close course button",
+                  "_adapt": {
+                    "translatable": true
+                  }
                 },
                 "_notifyPromptIfIncomplete": {
                   "type": "object",

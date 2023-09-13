@@ -6,16 +6,46 @@
     "closeButton": {
       "type": "string",
       "default": "Select here to close the window.",
-      "title": "Close button",
+      "title": "Close button ARIA label",
       "inputType": "Text",
       "translatable": true
     },
     "_navOrder": {
       "type": "number",
+      "default": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
+      "title": "Close button Nav order",
       "required": true,
       "default": 150,
       "inputType": "Text",
       "validators": []
+    },
+    "navLabel": {
+      "type": "string",
+      "required": true,
+      "default": 150,
+      "inputType": "Text",
+      "translatable": true
+    },
+    "_navTooltip": {
+      "type": "object",
+      "title": "Navigation tooltip",
+      "properties": {
+        "_isEnabled": {
+          "type": " boolean",
+          "title": "Enable tooltip for navigation button",
+          "default": true,
+          "inputType": "Checkbox",
+          "validators": [],
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "title": "Tooltip text",
+          "default": "Close",
+          "inputType": "Text",
+          "required": true
+        }
+      }
     }
   },
   "properties": {
@@ -41,6 +71,13 @@
                   "type": "object",
                   "title": "Button",
                   "properties": {
+                    "_isEnabled": {
+                      "type": "boolean",
+                      "default": true,
+                      "title": "Enabled?",
+                      "inputType": "Checkbox",
+                      "help": "Set to 'true' to add a close button to the navigation bar"
+                    },
                     "_closeViaLMSFinish": {
                       "type": "boolean",
                       "default": false,
@@ -48,12 +85,13 @@
                       "inputType": "Checkbox",
                       "help": "Enables closing the course via the SCORM 'finish' function rather than by closing the window - useful for LMSes that don't open the course in a new window or don't allow the course window to be closed via JavaScript."
                     },
-                    "_isEnabled": {
-                      "type": "boolean",
-                      "default": true,
-                      "title": "Enabled?",
-                      "inputType": "Checkbox",
-                      "help": "Set to 'true' to add a close button to the navigation bar"
+                    "navigationAriaLabel": {
+                      "type": "string",
+                      "default": "Close course button",
+                      "title": "Navigation button alt text",
+                      "inputType": "Text",
+                      "required": true,
+                      "translatable": true
                     },
                     "_notifyPromptIfIncomplete": {
                       "type": "object",
