@@ -12,7 +12,7 @@
     },
     "_navOrder": {
       "type": "number",
-      "default": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
+      "help": "Determines the order in which the object is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
       "title": "Close button Nav order",
       "required": true,
       "default": 150,
@@ -22,7 +22,7 @@
     "navLabel": {
       "type": "string",
       "required": true,
-      "default": 150,
+      "default": "Close Course",
       "inputType": "Text",
       "translatable": true
     },
