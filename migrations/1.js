@@ -1,9 +1,63 @@
 import { describe, whereFromPlugin, mutateContent, checkContent, updatePlugin, getCourse, testStopWhere, testSuccessWhere } from 'adapt-migrations';
 import _ from 'lodash';
 
-describe('Close Button - v2.2.0 to v3.0.0', async () => {
-  let course, courseCloseGlobals, navTooltip;
-  whereFromPlugin('Close Button - from v2.2.0', { name: 'adapt-close', version: '<3.0.0' });
+describe('Close Button - v2.0.0 to v2.1.0', async () => {
+  let course, courseClose;
+  const bodyDefault = 'Are you sure you want to exit the course?';
+  const confirmDefault = 'Exit course';
+  whereFromPlugin('Close Button - from v2.0.0', { name: 'adapt-close', version: '<2.1.0' });
+  mutateContent('Close Button - add globals if missing', async (content) => {
+    course = getCourse();
+    if (!_.has(course, '_close')) _.set(course, '_close', {});
+    courseClose = course._close;
+    return true;
+  });
+  mutateContent('Close Button - update default for body', async (content) => {
+    if (courseClose.body !== bodyDefault) _.set(courseClose, 'body', bodyDefault);
+    return true;
+  });
+  mutateContent('Close Button - update default for confirm', async (content) => {
+    if (courseClose.confirm !== confirmDefault) _.set(courseClose, 'confirm', confirmDefault);
+    return true;
+  });
+  checkContent('Close Button - check course _close attribute', async content => {
+    if (courseClose === undefined) throw new Error('Close Button - course _close invalid');
+    return true;
+  });
+  checkContent('Close Button - check course body default value', async content => {
+    if (courseClose.body !== bodyDefault) throw new Error('Close Button - course body default invalid');
+    return true;
+  });
+  checkContent('Close Button - check course confirm default value', async content => {
+    if (courseClose.confirm !== confirmDefault) throw new Error('Close Button - course confirm default invalid');
+    return true;
+  });
+  updatePlugin('Close Button - update to v2.1.0', { name: 'adapt-close', version: '2.1.0', framework: '>=5' });
+
+  testSuccessWhere('Close Button with empty course', {
+    fromPlugins: [{ name: 'adapt-close', version: '2.0.0' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course' }
+    ]
+  });
+
+  testSuccessWhere('Close Button with empty course config', {
+    fromPlugins: [{ name: 'adapt-close', version: '2.0.0' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course', _close: {} }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-close', version: '2.1.0' }]
+  });
+});
+
+describe('Close Button - v2.1.1 to v2.1.2', async () => {
+  let course, courseCloseGlobals;
+  whereFromPlugin('Close Button - from v2.1.1', { name: 'adapt-close', version: '<2.1.2' });
   mutateContent('Close Button - add globals if missing', async (content) => {
     course = getCourse();
     if (!_.has(course, '_globals._extensions._close')) _.set(course, '_globals._extensions._close', {});
@@ -12,6 +66,47 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
   });
   mutateContent('Close Button - add globals _close _navOrder', async (content) => {
     _.set(courseCloseGlobals, '_navOrder', 150);
+    return true;
+  });
+  checkContent('Close Button - check globals _close attribute', async content => {
+    if (courseCloseGlobals === undefined) throw new Error('Close Button - globals _close invalid');
+    return true;
+  });
+  checkContent('Close Button - check globals _close _navOrder', async content => {
+    const isValid = courseCloseGlobals._navOrder === 150;
+    if (!isValid) throw new Error('Close Button - globals _close _navOrder invalid');
+    return true;
+  });
+  updatePlugin('Close Button - update to v2.1.2', { name: 'adapt-close', version: '2.1.2', framework: '>=5' });
+
+  testSuccessWhere('Close Button with empty course', {
+    fromPlugins: [{ name: 'adapt-close', version: '2.1.1' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course' }
+    ]
+  });
+
+  testSuccessWhere('Close Button with empty course config', {
+    fromPlugins: [{ name: 'adapt-close', version: '2.1.1' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course', _close: {} }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-close', version: '2.1.2' }]
+  });
+});
+
+describe('Close Button - v2.2.0 to v3.0.0', async () => {
+  let course, courseCloseGlobals, navTooltip;
+  whereFromPlugin('Close Button - from v2.2.0', { name: 'adapt-close', version: '<3.0.0' });
+  mutateContent('Close Button - add globals if missing', async (content) => {
+    course = getCourse();
+    if (!_.has(course, '_globals._extensions._close')) _.set(course, '_globals._extensions._close', {});
+    courseCloseGlobals = course._globals._extensions._close;
     return true;
   });
   mutateContent('Close Button - add globals _close navLabel', async (content) => {
@@ -33,11 +128,6 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
   });
   checkContent('Close Button - check globals _close attribute', async content => {
     if (courseCloseGlobals === undefined) throw new Error('Close Button - globals _close invalid');
-    return true;
-  });
-  checkContent('Close Button - check globals _close _navOrder', async content => {
-    const isValid = courseCloseGlobals._navOrder === 150;
-    if (!isValid) throw new Error('Close Button - globals _close _navOrder invalid');
     return true;
   });
   checkContent('Close Button - check globals _close navLabel', async content => {
