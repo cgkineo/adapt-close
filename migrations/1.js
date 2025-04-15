@@ -14,10 +14,6 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
     _.set(courseCloseGlobals, '_navOrder', 150);
     return true;
   });
-  mutateContent('Close Button - add globals _close _showLabel', async (content) => {
-    _.set(courseCloseGlobals, '_showLabel', true);
-    return true;
-  });
   mutateContent('Close Button - add globals _close navLabel', async (content) => {
     _.set(courseCloseGlobals, 'navLabel', 'Close Course');
     return true;
@@ -42,11 +38,6 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
   checkContent('Close Button - check globals _close _navOrder', async content => {
     const isValid = courseCloseGlobals._navOrder === 150;
     if (!isValid) throw new Error('Close Button - globals _close _navOrder invalid');
-    return true;
-  });
-  checkContent('Close Button - check globals _close _showLabel', async content => {
-    const isValid = courseCloseGlobals._showLabel === true;
-    if (!isValid) throw new Error('Close Button - globals _close _showLabel invalid');
     return true;
   });
   checkContent('Close Button - check globals _close navLabel', async content => {
