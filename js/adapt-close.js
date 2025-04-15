@@ -49,7 +49,8 @@ class AdaptClose extends Backbone.Controller {
     const {
       _navOrder = 100,
       _showLabel = true,
-      navLabel = ''
+      navLabel = '',
+      closeButton = ''
     } = AdaptClose.globalsConfig ?? {};
 
     const model = new NavigationButtonModel({
@@ -59,6 +60,7 @@ class AdaptClose extends Backbone.Controller {
       _classes: 'btn-icon nav__btn nav__close-btn',
       _iconClasses: '',
       _role: 'button',
+      ariaLabel: closeButton,
       text: navLabel,
       config: this.config
     });
