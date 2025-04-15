@@ -1,6 +1,7 @@
     // To go in the course.json file
     "_extensions": {
         "_close": {
+          "closeButton": "Select here to close the window.",
           "_navOrder": 110,
           "navLabel": "Close",
           "_navTooltip": {
