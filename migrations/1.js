@@ -6,7 +6,7 @@ describe('Close Button - v2.0.0 to v2.1.0', async () => {
   const bodyDefault = 'Are you sure you want to exit the course?';
   const confirmDefault = 'Exit course';
   whereFromPlugin('Close Button - from v2.0.0', { name: 'adapt-close', version: '<2.1.0' });
-  mutateContent('Close Button - add globals if missing', async (content) => {
+  mutateContent('Close Button - add course _close if missing', async (content) => {
     course = getCourse();
     if (!_.has(course, '_close')) _.set(course, '_close', {});
     courseClose = course._close;
@@ -101,7 +101,7 @@ describe('Close Button - v2.1.1 to v2.1.2', async () => {
 });
 
 describe('Close Button - v2.2.0 to v3.0.0', async () => {
-  let course, courseCloseGlobals, navTooltip;
+  let course, courseCloseGlobals, courseClose, navTooltip;
   whereFromPlugin('Close Button - from v2.2.0', { name: 'adapt-close', version: '<3.0.0' });
   mutateContent('Close Button - add globals if missing', async (content) => {
     course = getCourse();
@@ -126,6 +126,20 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
     _.set(navTooltip, 'text', 'Close');
     return true;
   });
+  mutateContent('Close Button - add course _close if missing', async (content) => {
+    course = getCourse();
+    if (!_.has(course, '_close')) _.set(course, '_close', {});
+    courseClose = course._close;
+    return true;
+  });
+  mutateContent('Close Button - Add _button._isEnabled', async (content) => {
+    _.set(courseClose, '_button._isEnabled', true);
+    return true;
+  });
+  mutateContent('Close Button - Add _button.navigationAriaLabel', async (content) => {
+    _.set(courseClose, '_button.navigationAriaLabel', 'Close course button');
+    return true;
+  });
   checkContent('Close Button - check globals _close attribute', async content => {
     if (courseCloseGlobals === undefined) throw new Error('Close Button - globals _close invalid');
     return true;
@@ -148,6 +162,18 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
   checkContent('Close Button - check globals _close _navTooltip text', async content => {
     const isValid = navTooltip.text === 'Close';
     if (!isValid) throw new Error('Close Button - globals _close _navTooltip text invalid');
+    return true;
+  });
+  checkContent('Close Button - check course _close attribute', async content => {
+    if (courseClose === undefined) throw new Error('Close Button - course _close invalid');
+    return true;
+  });
+  checkContent('Close Button - check _button._isEnabled value', async content => {
+    if (courseClose._button._isEnabled !== true) throw new Error('Close Button - course _button._isEnabled invalid');
+    return true;
+  });
+  checkContent('Close Button - check _button.navigationAriaLabel value', async content => {
+    if (courseClose._button.navigationAriaLabel !== 'Close course button') throw new Error('Close Button - course _button.navigationAriaLabel invalid');
     return true;
   });
   updatePlugin('Close Button - update to v3.0.0', { name: 'adapt-close', version: '3.0.0', framework: '>=5.30.3' });
