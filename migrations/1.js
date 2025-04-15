@@ -41,7 +41,7 @@ describe('Close Button - v2.2.0 to v3.0.0', async () => {
     return true;
   });
   checkContent('Close Button - check globals _close navLabel', async content => {
-    const isValid = courseCloseGlobals.navLabel !== 'Close Course';
+    const isValid = courseCloseGlobals.navLabel === 'Close Course';
     if (!isValid) throw new Error('Close Button - globals _close navLabel invalid');
     return true;
   });
