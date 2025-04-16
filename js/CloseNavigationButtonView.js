@@ -4,16 +4,10 @@ import tooltips from 'core/js/tooltips';
 import notify from 'core/js/notify';
 
 export default class CloseNavigationButtonView extends NavigationButtonView {
-
   attributes() {
-    const attributes = this.model.toJSON();
     return {
-      name: attributes._id,
-      role: attributes._role === 'button' ? undefined : attributes._role,
-      'aria-label': Adapt.adaptclose.config._button.navigationAriaLabel,
-      'data-order': attributes._order,
-      'data-tooltip-id': 'adaptclose',
-      'data-event': 'closeButton'
+      ...super.attributes(),
+      'data-tooltip-id': 'adaptclose'
     };
   }
 

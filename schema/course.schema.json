@@ -21,10 +21,10 @@
                   "title": "Close",
                   "default": {},
                   "properties": {
-                    "closeButton": {
+                    "ariaLabel": {
                       "type": "string",
                       "title": "Close button ARIA label",
-                      "default": "Select here to close the window.",
+                      "default": "Select here to close the course.",
                       "_adapt": {
                         "translatable": true
                       }
@@ -94,14 +94,6 @@
                   "title": "Close via LMSFinish?",
                   "description": "Enables closing the course via the SCORM 'finish' function rather than by closing the window - useful for LMSes that don't open the course in a new window or don't allow the course window to be closed via JavaScript.",
                   "default": false
-                },
-                "navigationAriaLabel": {
-                  "type": "string",
-                  "title": "Navigation button alt text",
-                  "default": "Close course button",
-                  "_adapt": {
-                    "translatable": true
-                  }
                 },
                 "_notifyPromptIfIncomplete": {
                   "type": "object",
