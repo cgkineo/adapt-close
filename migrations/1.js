@@ -227,11 +227,15 @@ describe('Close - v2.2.0 to v3.0.0', async () => {
     return true;
   });
   checkContent('Close - check _button._isEnabled value', async content => {
-    if (courseCloseButton._isEnabled !== true) throw new Error('Close - course _button._isEnabled invalid');
+    if (courseCloseButton._isEnabled !== true) {
+      throw new Error('Close - course _button._isEnabled invalid');
+    }
     return true;
   });
   checkContent('Close - check _button.navigationAriaLabel value', async content => {
-    if (courseCloseButton.navigationAriaLabel !== 'Close course button') throw new Error('Close - course _button.navigationAriaLabel invalid');
+    if (courseCloseButton.navigationAriaLabel !== 'Close course button') {
+      throw new Error('Close - course _button.navigationAriaLabel invalid');
+    }
     return true;
   });
   updatePlugin('Close - update to v3.0.0', { name: 'adapt-close', version: '3.0.0', framework: '>=5.30.3' });
