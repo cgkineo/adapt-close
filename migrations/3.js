@@ -112,3 +112,49 @@ describe('Close - v2.2.0 to v3.0.0', async () => {
     fromPlugins: [{ name: 'adapt-close', version: '3.0.0' }]
   });
 });
+
+describe('Close - v3.1.0 to v3.1.1', async () => {
+  let course, courseCloseGlobals;
+  whereFromPlugin('Close - from v3.1.0', { name: 'adapt-close', version: '<3.1.1' });
+  mutateContent('Close - add globals if missing', async (content) => {
+    course = getCourse();
+    if (!_.has(course, '_globals._extensions._close')) _.set(course, '_globals._extensions._close', {});
+    courseCloseGlobals = course._globals._extensions._close;
+    return true;
+  });
+  mutateContent('Close - update navLabel default', async (content) => {
+    if (courseCloseGlobals.navLabel === 150) _.set(courseCloseGlobals, 'navLabel', 'Close Course');
+    return true;
+  });
+  checkContent('Close - check globals _close attribute', async content => {
+    if (courseCloseGlobals === undefined) throw new Error('Close - globals _close invalid');
+    return true;
+  });
+  checkContent('Close - check navLabel default', async content => {
+    if (courseCloseGlobals.navLabel === 150) {
+      throw new Error('Close - course navLabel default is invalid');
+    }
+    return true;
+  });
+  updatePlugin('Close - update to v3.1.1', { name: 'adapt-close', version: '3.1.1', framework: '>=5.30.3' });
+
+  testSuccessWhere('Close with empty course', {
+    fromPlugins: [{ name: 'adapt-close', version: '3.1.0' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course' }
+    ]
+  });
+
+  testSuccessWhere('Close with empty course config', {
+    fromPlugins: [{ name: 'adapt-close', version: '3.1.0' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course', _close: {} }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-close', version: '3.1.1' }]
+  });
+});
