@@ -3,6 +3,7 @@
         "_close": {
           "_navOrder": 110,
           "navLabel": "Close",
+          "ariaLabel": "Select here to close the course.",
           "_navTooltip": {
             "_isEnabled": true,
             "text": "Close"
@@ -16,7 +17,6 @@
         "_button": {
             "_isEnabled": true,
             "_closeViaLMSFinish": false,
-            "navigationAriaLabel": "Close course button",
             "_notifyPromptIfIncomplete": {
                 "_isEnabled": false,
                 "title": "Confirm close",

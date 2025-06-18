@@ -3,9 +3,9 @@
   "$schema": "http://json-schema.org/draft-03/schema",
   "id": "http://jsonschema.net",
   "globals": {
-    "closeButton": {
+    "ariaLabel": {
       "type": "string",
-      "default": "Select here to close the window.",
+      "default": "Select here to close the course.",
       "title": "Close button ARIA label",
       "inputType": "Text",
       "translatable": true
@@ -84,14 +84,6 @@
                       "title": "Close via LMSFinish?",
                       "inputType": "Checkbox",
                       "help": "Enables closing the course via the SCORM 'finish' function rather than by closing the window - useful for LMSes that don't open the course in a new window or don't allow the course window to be closed via JavaScript."
-                    },
-                    "navigationAriaLabel": {
-                      "type": "string",
-                      "default": "Close course button",
-                      "title": "Navigation button alt text",
-                      "inputType": "Text",
-                      "required": true,
-                      "translatable": true
                     },
                     "_notifyPromptIfIncomplete": {
                       "type": "object",
