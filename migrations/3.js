@@ -156,10 +156,24 @@ describe('Close - v3.1.1 to v3.2.0', async () => {
     course = getCourse();
     if (!_.has(course, '_globals._extensions._close')) _.set(course, '_globals._extensions._close', {});
     courseCloseGlobals = course._globals._extensions._close;
+    courseClose = course._close;
     return true;
   });
-  checkContent('Close - check globals _close attribute', async content => {
+  mutateContent('Close - remove _button.navigationAriaLabel', async (content) => {
+    courseCloseButton = courseClose._button;
+    if (_.has(courseCloseButton, 'navigationAriaLabel')) {
+      delete courseCloseButton.navigationAriaLabel;
+    }
+    return true;
+  });
+  checkContent('Close - check globals _close attribute', async (content) => {
     if (courseCloseGlobals === undefined) throw new Error('Close - globals _close invalid');
+    return true;
+  });
+  checkContent('Close - check _button.navigationAriaLabel removed', async (content) => {
+    if (_.has(courseCloseButton, 'navigationAriaLabel')) {
+      throw new Error('Close - course _button.navigationAriaLabel was not removed');
+    }
     return true;
   });
   updatePlugin('Close - update to v3.2.0', { name: 'adapt-close', version: '3.2.0', framework: '>=5.30.3' });
