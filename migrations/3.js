@@ -38,10 +38,6 @@ describe('Close - v2.2.0 to v3.0.0', async () => {
     courseCloseButton = courseClose._button;
     return true;
   });
-  mutateContent('Close - Add _button._isEnabled', async (content) => {
-    _.set(courseCloseButton, '_isEnabled', true);
-    return true;
-  });
   mutateContent('Close - Add _button.navigationAriaLabel', async (content) => {
     _.set(courseCloseButton, 'navigationAriaLabel', 'Close course button');
     return true;
@@ -76,12 +72,6 @@ describe('Close - v2.2.0 to v3.0.0', async () => {
   });
   checkContent('Close - check _close._button attribute', async content => {
     if (courseCloseButton === undefined) throw new Error('Close - _close._button invalid');
-    return true;
-  });
-  checkContent('Close - check _button._isEnabled value', async content => {
-    if (courseCloseButton._isEnabled !== true) {
-      throw new Error('Close - course _button._isEnabled invalid');
-    }
     return true;
   });
   checkContent('Close - check _button.navigationAriaLabel value', async content => {
@@ -156,5 +146,41 @@ describe('Close - v3.1.0 to v3.1.1', async () => {
 
   testStopWhere('incorrect version', {
     fromPlugins: [{ name: 'adapt-close', version: '3.1.1' }]
+  });
+});
+
+describe('Close - v3.1.1 to v3.2.0', async () => {
+  let course, courseCloseGlobals, courseClose, courseCloseButton, navTooltip;
+  whereFromPlugin('Close - from v3.1.1', { name: 'adapt-close', version: '<3.2.0' });
+  mutateContent('Close - add globals if missing', async (content) => {
+    course = getCourse();
+    if (!_.has(course, '_globals._extensions._close')) _.set(course, '_globals._extensions._close', {});
+    courseCloseGlobals = course._globals._extensions._close;
+    return true;
+  });
+  checkContent('Close - check globals _close attribute', async content => {
+    if (courseCloseGlobals === undefined) throw new Error('Close - globals _close invalid');
+    return true;
+  });
+  updatePlugin('Close - update to v3.2.0', { name: 'adapt-close', version: '3.2.0', framework: '>=5.30.3' });
+
+  testSuccessWhere('Close with empty course', {
+    fromPlugins: [{ name: 'adapt-close', version: '3.1.1' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course' }
+    ]
+  });
+
+  testSuccessWhere('Close with empty course config', {
+    fromPlugins: [{ name: 'adapt-close', version: '3.1.1' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq' },
+      { _type: 'course', _close: {} }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-close', version: '3.2.0' }]
   });
 });
