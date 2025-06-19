@@ -150,7 +150,7 @@ describe('Close - v3.1.0 to v3.1.1', async () => {
 });
 
 describe('Close - v3.1.1 to v3.2.0', async () => {
-  let course, courseCloseGlobals, courseClose, courseCloseButton, navTooltip;
+  let course, courseCloseGlobals, courseClose, courseCloseButton;
   whereFromPlugin('Close - from v3.1.1', { name: 'adapt-close', version: '<3.2.0' });
   mutateContent('Close - add globals if missing', async (content) => {
     course = getCourse();
@@ -159,8 +159,21 @@ describe('Close - v3.1.1 to v3.2.0', async () => {
     courseClose = course._close;
     return true;
   });
+  mutateContent('Close - rename closeButton to ariaLabel', async (content) => {
+    if (_.has(courseCloseGlobals, 'closeButton')) {
+      _.set(courseCloseGlobals, 'ariaLabel', courseCloseGlobals.closeButton);
+      delete courseCloseGlobals.closeButton;
+    }
+    return true;
+  });
+  mutateContent('Close - update ariaLabel default value', async (content) => {
+    if (courseCloseGlobals.ariaLabel === 'Select here to close the window.') {
+      _.set(courseCloseGlobals, 'ariaLabel', 'Select here to close the course.');
+    }
+    return true;
+  });
   mutateContent('Close - remove _button.navigationAriaLabel', async (content) => {
-    courseCloseButton = courseClose._button;
+    courseCloseButton = courseClose && courseClose._button;
     if (_.has(courseCloseButton, 'navigationAriaLabel')) {
       delete courseCloseButton.navigationAriaLabel;
     }
@@ -168,6 +181,18 @@ describe('Close - v3.1.1 to v3.2.0', async () => {
   });
   checkContent('Close - check globals _close attribute', async (content) => {
     if (courseCloseGlobals === undefined) throw new Error('Close - globals _close invalid');
+    return true;
+  });
+  checkContent('Close - check ariaLabel renamed', async (content) => {
+    if (_.has(courseCloseGlobals, 'closeButton')) {
+      throw new Error('Close - closeButton was not renamed to ariaLabel');
+    }
+    return true;
+  });
+  checkContent('Close - check ariaLabel default value updated', async (content) => {
+    if (courseCloseGlobals.ariaLabel === 'Select here to close the window.') {
+      throw new Error('Close - ariaLabel default value was not updated');
+    }
     return true;
   });
   checkContent('Close - check _button.navigationAriaLabel removed', async (content) => {
