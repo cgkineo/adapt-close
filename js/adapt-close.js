@@ -8,7 +8,7 @@ class AdaptClose extends Backbone.Controller {
 
   initialize() {
     this.onBeforeUnload = this.onBeforeUnload.bind(this);
-    this.listenToOnce(Adapt, 'adapt:start', this.onStart);
+    this.listenTo(Adapt, 'adapt:start', this.onStart);
   }
 
   get config () {
@@ -76,3 +76,4 @@ class AdaptClose extends Backbone.Controller {
 }
 
 export default (Adapt.adaptclose = new AdaptClose());
+
